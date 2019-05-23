@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
-const portNumber = 80;
+const portNumber = process.env.PORT || 9000;
 
 let User = require('./models/user');
 
