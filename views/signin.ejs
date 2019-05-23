@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>เข้าสู่ระบบ</title>
+    <% include partials/header %>
+</head>
+
+<body class="bodypart">
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>Find My House</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">เข้าสู่ระบบ</a>
+    <% include partials/navbar2 %>
+
+    <div class="container-fluid">
+        <div>
+            <h1 class="welcomeTag">ยินดีต้อนรับ</h1>
+            <div class="signinform">
+                <div class="signin">
+                    <h1>เข้าสู่ระบบ</h1>
+                    <form method="POST" accept="/signin">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label>e-mail :</label>
+                            </div>
+                            <div class="col-sm-12 col-md-9 col-lg-9">
+                                <input type="email" class="form-control" id="username" name="username"
+                                    placeholder="กรุณาใส่ email ที่ลงทะเบียน" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                <label>รหัสผ่าน :</label>
+                            </div>
+                            <div class="col-sm-12 col-md-9 col-lg-9">
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="กรุณาใส่รหัสผ่าน" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
+                    </form>
+                </div>
+                <p style="margin-top: 1em;">
+                    ยังไม่มีบัญชีใช่ไหม ?
+                    <a class="btn btn-primary" href="/signup">สมัครสมาชิก</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>สร้างบัญชี</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>สร้างบัญชี</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">คู่มือการเลี้ยง</a>
+    <% include partials/navbar2 %>
+
+    <div class="container">
+        <div id="signup">
+            <form method="POST" action="/signup">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <label for="name">ชื่อ (ภาษาไทย)</label>
+                        <input id="name" name="name" class="form-control" type="text" required>
+                        <label for="lname">นามสกุล (ภาษาไทย)</label>
+                        <input id="lname" name="lanme" class="form-control" type="text" required>
+                        <label for="gender">เพศ</label>
+                        <select class="form-control" id="gender" name="gender">
+                            <option value="male">ชาย</option>
+                            <option value="female">หญิง</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div id="uploadUserPic">
+                            <label class="file-upload btn btn-primary">
+                                <input type="file" id="imgInp" style="display: none;">
+                                เลือกรูปภาพ
+                            </label>
+                            <label>รูปภาพควรมีขนาด 640px X 480px</label>
+                            <br>
+                            <div style="width: 100%;height: 180px; text-align: center;">
+                                <img id="img-upload" style="width: 240px ;height: 180px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>ที่อยู่ปัจจุบัน</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-2">
+                        <label for="address">บ้านเลขที่</label>
+                        <input id="address" name="address" class="form-control" type="text" required>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-5">
+                        <label for="village">หมู่/หมู่บ้าน</label>
+                        <input id="village" name="village" class="form-control" type="text">
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-5">
+                        <label for="road">ถนน</label>
+                        <input id="road" name="road" class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="subdistrict">ตำบล/แขวง</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="subdistrict" name="subdistrict" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="district">อำเภอ/เขต</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="district" name="district" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="province">จังหวัด</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="province" name="province" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="zipcode">รหัสไปรษณีย์</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="zipcode" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="email">e-mail</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="username" name="username" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="password">รหัสผ่าน</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="password" name="password" type="password" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12" style="text-align: center;">
+                        <div class="btn-group">
+                            <button class="btn btn-success" type="submit">ยืนยันข้อมูล</button>
+                            <button class="btn btn-danger" type="reset">ยกเลิก</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

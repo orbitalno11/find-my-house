@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>เรื่องแบบแมว</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>เรื่องแบบแมว</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบแมว</a>
+    <% include partials/navbar2 %>
+
+    <div class="searchTab">
+        <form method="POST" accept="">
+            <div class="input-group">
+                <input type="text" id="catSearch" class="form-control" placeholder="ค้นหา" required>
+                <div class="input-group-append">
+                    <button type="submit" class="btn" style="background-color: #795548"><i class="fas fa-search"
+                            style="color: white;"></i></button>
+                </div>
+            </div>
+        </form>
+        <a href="catpost.html" class="btn btn-success" style="margin-top: 1em;">ตั้งโพสต์</a>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <div class="card w-100 storycard">
+                    <div class="card-body">
+                        <h4 id="title" class="card-title">[หาบ้าน]</h4>
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="petPic" src="img/cat_post.jpg">
+                            </div>
+                            <div class="col-7" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>ลักษณะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="identity">ลักษณะเด่น</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สายพันธุ์</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="species">สายพันธุ์</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สถานะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="petStatus">เปลี่ยนเจ้านาย</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="postDetail.html" class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="card w-100 storycard">
+                    <div class="card-body">
+                        <h4 id="title" class="card-title">[หาบ้าน]</h4>
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="petPic" src="img/cat_post.jpg">
+                            </div>
+                            <div class="col-7" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>ลักษณะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="identity">ลักษณะเด่น</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สายพันธุ์</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="species">สายพันธุ์</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สถานะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="petStatus">เปลี่ยนเจ้านาย</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#" class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="card w-100 storycard">
+                    <div class="card-body">
+                        <h4 id="title" class="card-title">[หาบ้าน]</h4>
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="petPic" src="img/cat_post.jpg">
+                            </div>
+                            <div class="col-7" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>ลักษณะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="identity">ลักษณะเด่น</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สายพันธุ์</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="species">สายพันธุ์</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สถานะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="petStatus">เปลี่ยนเจ้านาย</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#" class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div class="card w-100 storycard">
+                    <div class="card-body">
+                        <h4 id="title" class="card-title">[หาบ้าน]</h4>
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="petPic" src="img/cat_post.jpg">
+                            </div>
+                            <div class="col-7" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>ลักษณะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="identity">ลักษณะเด่น</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สายพันธุ์</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="species">สายพันธุ์</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สถานะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="petStatus">เปลี่ยนเจ้านาย</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <a href="#" class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

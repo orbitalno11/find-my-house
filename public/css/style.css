@@ -1,0 +1,474 @@
+.bodypart {
+  background-image: url(/img/bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+}
+
+.banner{
+  background-image: url(/img/banner.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  padding: 2em;
+  text-align: right;
+}
+
+nav {
+  background-color: #795548;
+  /* margin-top: 20%; */
+}
+
+/* #banner {
+  padding: 2em;
+  width: 100%;
+  height: 250px;
+  text-align: right;
+} */
+
+body {
+  font-family: 'Prompt', sans-serif;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.banner img {
+  display: block;
+  margin-left: 0px;
+  float: left;
+  height: 100%;
+}
+
+.navbar-toggler i {
+  font-size: 1.5em;
+  color: #ffa726;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #ffa726;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  text-align: right;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #795548;
+  display: block;
+  transition: 0.3s;
+  padding-right: 1em;
+  font-weight: bold;
+}
+
+.sidenav a:hover {
+  color: white;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+}
+
+.loginlink {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
+.loginlink:hover {
+  color: #ffa726;
+  text-decoration: none;
+}
+
+#pageActive {
+  display: none;
+}
+
+.mobiletab {
+  display: none;
+}
+
+.signinform {
+  width: 35%;
+  float: right;
+  margin-right: 10%;
+  text-align: center;
+  background-color: transparent;
+}
+
+.signin {
+  background-color: #ffa726;
+  border-radius: 2em;
+  padding: 2em;
+  color: white;
+}
+
+.signinform .row {
+  margin-top: 1em;
+  text-align: right;
+  font-size: 1.5em;
+}
+
+.signinform button {
+  margin-top: 1em;
+}
+
+#signup .row {
+  padding-top: 1em;
+}
+
+.welcomeTag {
+  margin-top: 5%;
+  margin-left: 10%;
+  font-size: 5em;
+}
+
+#signup {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffa726;
+  padding: 1em;
+  border-radius: 1em;
+  color: white;
+  width: 75%;
+}
+
+.searchTab {
+  width: 75%;
+  margin: 1em auto;
+  font-size: 1.5em;
+}
+
+.foundationcard {
+  background-color: #ffa726;
+  margin-top: 1em;
+  font-size: 1.5em;
+  color: white;
+}
+
+.findcat {
+  background-color: #fffacd;
+  margin-top: 1em;
+  font-size: 1.5em;
+  color: black;
+}
+
+.searchTab input {
+  font-size: 1.2em;
+}
+
+.searchTab i {
+  font-size: 1.75em;
+}
+
+/* #carouselExampleControls{
+  margin-top: 6.25rem;
+} */
+
+.makePost {
+  font-size: 1.5em;
+  color: #795548;
+  margin-top: 1em;
+}
+
+.someDetail {
+  font-size: medium;
+}
+
+.takeCare {
+  background-color: #F8BBD0;
+  margin-top: 1em;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  height: 325px;
+  /* padding-top: auto;
+  padding-bottom: auto; */
+}
+
+.takeCare img {
+  width: 150px;
+}
+
+.takeCareBTN {
+  background-color: hotpink;
+  color: white;
+}
+
+.takeCareBTN:hover {
+  background: #FF80AB;
+  color: white;
+}
+
+.ownerPost {
+  background-color: #ffa726;
+  color: white;
+  margin-top: 1em;
+  font-size: 1.5em;
+  border-radius: 0.5em;
+  height: 325px;
+}
+
+.ownerPost img {
+  width: 150px;
+}
+
+.storycard {
+  font-size: 1em;
+  border-radius: 0.5em;
+  margin-top: 1em;
+  background-color: #FFB74D;
+}
+
+.storycard img {
+  width: 150px;
+}
+
+.postDetailList{
+  font-size: 1.25em;
+}
+
+.postDetailHead{
+  margin-top: 1em;
+  font-size: 1.5em;;
+  color: #795548;
+  font-weight: bold;
+}
+
+.postDetailHead #postType{
+  color: #ffa726;
+  font-weight: bold;
+}
+
+.petDetailPic{
+  width: 100%;
+}
+
+.aboutUsCard{
+  background-color: #ffa726;
+  border-radius: 0.5em;
+  color: white;
+}
+
+.reportForm{
+  background-color: #EF5350;
+  margin-top: 1em;
+  color : white;
+}
+
+#adminNav{
+  background-color: #ffa726;
+  border-radius: 0.5em;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+/* Latop L Screen */
+
+@media screen and (max-width: 1440px) {
+  .signinform {
+    width: 50%;
+  }
+}
+
+/* iPadPro screen */
+
+@media screen and (max-width: 1024px) {
+  .signinform {
+    width: 55%;
+  }
+  .welcomeTag {
+    font-size: 2.5em;
+  }
+  .takeCare {
+    font-size: medium;
+    height: 290px;
+  }
+  .ownerPost {
+    font-size: medium;
+    height: 290px;
+  }
+}
+
+/* Mobile screen */
+
+@media screen and (max-width: 992px) {
+  .bodypart {
+    background-image: url(/img/bg-mobile.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  nav {
+    background-color: white;
+    border-bottom: 0.35em solid #795548;
+    /* margin-top: 0rem; */
+  }
+  
+  /* #carouselExampleControls{
+    margin-top: 25%;
+  } */
+  .loginlink {
+    color: #795548;
+    text-decoration: none;
+    font-size: 1.25em;
+    text-align: center;
+  }
+  .banner {
+    display: none;
+  }
+  #pageActive {
+    color: #795548;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .mobiletab {
+    display: inline;
+  }
+  #cattab {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #ffa726;
+    border-radius: 1em;
+    color: #795548;
+  }
+  #cattab:hover {
+    background-color: #fcc26b;
+  }
+  #dogtab {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #795548;
+    border-radius: 1em;
+    color: #ffa726;
+  }
+  #dogtab:hover {
+    background-color: #9e796b;
+  }
+  #foundationtab {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 1em;
+    background-color: #ffa726;
+    border-radius: 1em;
+    color: #795548;
+  }
+  #foundationtab:hover {
+    background-color: #fcc26b;
+  }
+  .loginbox {
+    background-color: #ffa726;
+  }
+  .signinform {
+    width: 75%;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+  }
+  .signinform .row {
+    text-align: left;
+  }
+  .welcomeTag {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 0px;
+    text-align: center;
+    font-size: 2.5em;
+  }
+  #signup {
+    width: 100%;
+  }
+  #uploadUserPic {
+    margin-top: 1em;
+  }
+  .searchTab {
+    width: 90%;
+    margin: 1em auto 0px;
+  }
+  .foundationcard {
+    background-color: #ffa726;
+    font-size: 12px;
+    margin-top: 1em;
+  }
+  .searchTab input {
+    font-size: medium;
+  }
+  .searchTab i {
+    font-size: 1em;
+  }
+  .takeCare {
+    font-size: medium;
+    height: auto;
+  }
+  .ownerPost {
+    font-size: medium;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .loginlink {
+    display: none;
+  }
+  .takeCare {
+    font-size: small;
+  }
+  .takeCare img {
+    width: 120px;
+  }
+  .storycard{
+    font-size: small;
+  }
+  .storycard img{
+    width: 120px;
+  }
+  .postDetailHead{
+    font-size: large;
+  }
+  .postDetailHead .btn-danger{
+    font-size: small;
+  }
+  .postDetailList{
+    font-size: medium;
+  }
+}
