@@ -2,11 +2,14 @@ const express = require('express');
 const BodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const passportLocalMongoose = require('passport-local-mongoose');
+// const LocalStrategy = require('passport-local');
+// const passportLocalMongoose = require('passport-local-mongoose');
+const path = require('path');
 const portNumber = process.env.PORT || 9000;
 
 let User = require('./models/user');
+let createpost = require('./models/create_module');
+let authenticattion = require('./models/authentication');
 
 mongoose.connect('mongodb://localhost/FindMyHouse2');
 
@@ -14,6 +17,8 @@ const app = express();
 app.set('view engine','ejs');
 app.use(BodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.resolve('./public')));
 
 app.use(require('express-session')({
     secret: 'Find My House',
@@ -24,16 +29,18 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+app.use('/createpost', createpost, express.static(path.resolve('./public')));
 
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/signin");
-}
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+// function isLoggedIn(req, res, next){
+//     if(req.isAuthenticated()){
+//         return next();
+//     }
+//     res.redirect('/signin');
+// }
 
 app.get('/',(req,res)=>{
     res.render('home');
@@ -55,7 +62,7 @@ app.get('/dog',(req,res)=>{
     res.render('dog');
 });
 
-app.get('/aboutus',isLoggedIn, (req,res)=>{
+app.get('/aboutus',authenticattion.isLoggedIn, (req,res)=>{
     res.render('aboutUs');
 });
 
@@ -63,8 +70,8 @@ app.get('/signin',(req,res)=>{
     res.render('signin');
 });
 
-app.post('/signin',passport.authenticate('local',{
-    successRedirect : '/aboutus',
+app.post('/signin', authenticattion.passport.authenticate('local',{
+    successRedirect : 'back',
     failureRedirect: '/signup'
 }) , (req,res)=>{
 
