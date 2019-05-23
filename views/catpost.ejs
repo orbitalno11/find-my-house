@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    
     <div class="banner">
         <img src="img/cat.png">
         <h1>เรื่องแบบแมว</h1>
@@ -18,20 +19,21 @@
     <% include partials/navbar2 %>
 
     <div class="container">
-        <form class="makePost" method="POST" action="#">
+        <form class="makePost" method="POST" action="/createpost/cat">
             <input type="text" id="petType" name="petType" value="cat" hidden>
+            <input type="text" id="owner" name="owner" value=<%= user %> hidden>
             <div class="row">
                 <div class="col-sm-12 col-lg-3">
                     <h1>ประเภทโพสต์</h1>
                 </div>
                 <div class="col-sm-12 col-lg-9">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="findPet">
+                        <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา">
                         <label class="form-check-label">ตามหา</label>
                         <label class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="findHouse">
+                        <input class="form-check-input" type="radio" id="postType" name="postType" value="หาบ้าน">
                         <label class="form-check-label">หาบ้าน</label>
                         <label class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
                     </div>
@@ -67,8 +69,8 @@
                 <div class="col-sm-12 col-lg-6">
                     <label>สถานะ</label>
                     <select class="form-control" id="petStatus" name="petStatus">
-                        <option value="findHouse">หาบ้าน</option>
-                        <option value="changeOwner">เปลี่ยนเจ้านาย</option>
+                        <option value="หาบ้าน">หาบ้าน</option>
+                        <option value="เปลี่ยนเจ้านาย">เปลี่ยนเจ้านาย</option>
                     </select>
                 </div>
             </div>

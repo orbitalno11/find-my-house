@@ -10,6 +10,9 @@ const portNumber = process.env.PORT || 9000;
 let User = require('./models/user');
 let createpost = require('./models/create_module');
 let authenticattion = require('./models/authentication');
+let post = require('./models/post');
+let view = require('./models/view_data');
+let takecare = require('./models/takecare');
 
 mongoose.connect('mongodb://localhost/FindMyHouse2');
 
@@ -30,6 +33,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/createpost', createpost, express.static(path.resolve('./public')));
+app.use('/view', view, express.static(path.resolve('./public')));
+app.use('/takecare', takecare, express.static(path.resolve('./public')));
+// var path = require('path');
+
 
 // passport.use(new LocalStrategy(User.authenticate()));
 // passport.serializeUser(User.serializeUser());
@@ -55,7 +62,16 @@ app.get('/howto',(req,res)=>{
 });
 
 app.get('/cat',(req,res)=>{
-    res.render('cat');
+    post.find((err,data)=>{
+        if(err){
+            console.log(err);
+            return res.redirect('/');
+        }else{
+            res.render('cat',{data: data});
+            // console.log(req.session);
+        }
+    });
+    // res.render('cat');
 });
 
 app.get('/dog',(req,res)=>{
@@ -71,7 +87,7 @@ app.get('/signin',(req,res)=>{
 });
 
 app.post('/signin', authenticattion.passport.authenticate('local',{
-    successRedirect : 'back',
+    successRedirect : '/aboutus',
     failureRedirect: '/signup'
 }) , (req,res)=>{
 

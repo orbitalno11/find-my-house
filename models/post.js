@@ -7,10 +7,11 @@ let Post = new Schema({
     petType: String,
     postType: String,
     identity: String,
-    morDetail: String,
+    moreDetail: String,
     species: String,
     petStatus: String,
-    moreContact: String
+    moreContact: String,
+    owner: String
 });
 
 module.exports = mongoose.model('Post',Post);

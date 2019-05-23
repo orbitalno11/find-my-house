@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>รายละเอียดโพสต์</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% data %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <% if (data.petType === 'cat') {%>
+            <h1>เรื่องแบบแมว</h1>
+        <% }else{%>
+            <h1>เรื่องแบบหมา</h1>
+        <% } %>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">รายละเอียดโพสต์</a>
+    <% include partials/navbar2 %>
+
+    <div class="container">
+
+        <div class="row postDetailHead">
+            <div class="col-5 col-md-3 col-lg-2">
+                <label>ประเภทโพสต์</label>
+            </div>
+            <div class="col-3 col-md-6 col-lg-7">
+                <label id="postType"><%= data.postType %></label>
+            </div>
+            <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
+                <a href="#" class="btn btn-danger">แจ้งผิดกฏ</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
+                <img id="petPic" class="petDetailPic" src="img/cat_post.jpg">
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
+                <div class="row no-gutters" style="margin-top: 1em;">
+                    <div class="col-4 col-md-2 col-lg-3">
+                        <label class="postDetailList">ลักษณะเด่น</label>
+                    </div>
+                    <div class="col-8 col-md-10 col-lg-9">
+                        <textarea id="indentity" class="form-control" rows="1" readonly><%= data.identity %></textarea>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <label class="postDetailList">ลักษณะโดยละเอียด</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <textarea rows="5" class="form-control" readonly><%= data.moreDetail %></textarea>
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 1em;">
+                    <div class="col-3 col-md-2 col-lg-2">
+                        <label class="postDetailList">สายพันธุ์</label>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-10">
+                        <input id="moreDetail" class="form-control" readonly value=<%= data.species %>>
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 1em;">
+                    <div class="col-4 col-md-3 col-lg-3">
+                        <label class="postDetailList">สถานะปัจจุบัน</label>
+                    </div>
+                    <div class="col-8 col-md-9 col-lg-9">
+                        <input id="petStatus" class="form-control" readonly value=<%= data.petStatus %>>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12" style="text-align: center;">
+                            <% 
+                            let url;
+                            if (data.petType === 'cat') {
+                                url = '/takecare/cat_'+data._id;
+                            }else{
+                                url = '/takecare/dog_'+data._id;
+                            } %>
+                        <a href=<%= url %> class="btn takeCareBTN">สนใจรับเลี้ยง</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

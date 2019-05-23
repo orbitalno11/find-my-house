@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
     name : String,
     lname : String,
     gender : String,
-    adress : String,
+    address : String,
     village : String,
     road : String,
     subdistrict : String,

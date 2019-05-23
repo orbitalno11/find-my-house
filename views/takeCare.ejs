@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ดูข้อมูลขอรับเลี้ยง</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% postdata %>
+    <% userdata %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <% if (postdata.petType === 'cat') {%>
+        <h1>เรื่องแบบแมว</h1>
+        <% }else{%>
+        <h1>เรื่องแบบหมา</h1>
+        <% } %>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">ดูข้อมูลขอรับเลี้ยง</a>
+    <% include partials/navbar2 %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                <h1 style="margin-top: 1em;">รายละเอียดขอรับเลี้ยง</h1>
+                <div class="card takeCare">
+                    <div class="card-body">
+                        <h4 class="card-title">[<%= postdata.postType %>]</h4>
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="petPic" src="img/cat_post.jpg">
+                            </div>
+                            <div class="col-7" style="padding-left: 1em;">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>ลักษณะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="identity"><%= postdata.identity %></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สายพันธุ์</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="species"><%= postdata.species %></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>สถานะ</label>
+                                    </div>
+                                    <div class="col-7">
+                                        <label id="petStatus"><%= postdata.petStatus %></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <% 
+                                            let url;
+                                            if (postdata.petType === 'cat') {
+                                                url = '/view/cat_'+postdata._id
+                                            }else{
+                                                url = '/view/cat_'+postdata._id;
+                                            } %>
+                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-lg-6">
+                <div>
+                    <h1 style="margin-top: 1em;">ข้อมูลผู้ตั้งโพสต์&nbsp;<label class="someDetail">post ID
+                            :&nbsp;</label><label class="someDetail" id="postID">12345</label></h1>
+                </div>
+
+                <div class="card ownerPost">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5" style="text-align: center;">
+                                <img id="owerPic" src="img/web_avatar.png">
+                            </div>
+
+                            <div class="col-7">
+                                <div class="row no-gutters">
+                                    <div class="col-3">
+                                        <label>
+                                            ชื่อ
+                                        </label>
+                                    </div>
+                                    <div class="col-9" style="padding-left: 1.5em;">
+                                        <label id="ownerName"><%= userdata.name %></label>
+                                    </div>
+                                </div>
+
+                                <div class="row no-gutters">
+                                    <div class="col-3">
+                                        <label>
+                                            นามสกุล
+                                        </label>
+                                    </div>
+                                    <div class="col-9" style="padding-left: 1.5em;">
+                                        <label id="ownerLname"><%= userdata.lname %></label>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>
+                                            <h3>การติดต่อ</h3>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <label>
+                                    เบอร์โทร.
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <label id="telNumber">XXX-XXX-XXXX</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <label>
+                                    e-mail
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <label id="email"><%= userdata.username %></label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <label>
+                                    facebook
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <label id="facebook">facebook.com/example</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
