@@ -32,7 +32,8 @@
                 <label id="postType"><%= data.postType %></label>
             </div>
             <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
-                <a href="#" class="btn btn-danger">แจ้งผิดกฏ</a>
+                <% let report = '/report/'+data._id; %>
+                <a href=<%= report %> class="btn btn-danger">แจ้งผิดกฏ</a>
             </div>
         </div>
 

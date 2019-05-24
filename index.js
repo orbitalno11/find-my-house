@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 // const LocalStrategy = require('passport-local');
 // const passportLocalMongoose = require('passport-local-mongoose');
-const path = require('path');
+// const path = require('path');
 const portNumber = process.env.PORT || 9000;
 
 let User = require('./models/user');
@@ -13,6 +13,7 @@ let authenticattion = require('./models/authentication');
 let post = require('./models/post');
 let view = require('./models/view_data');
 let takecare = require('./models/takecare');
+let reportpost = require('./models/reportpost');
 
 mongoose.connect('mongodb://localhost/FindMyHouse2');
 
@@ -32,9 +33,11 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/createpost', createpost, express.static(path.resolve('./public')));
-app.use('/view', view, express.static(path.resolve('./public')));
-app.use('/takecare', takecare, express.static(path.resolve('./public')));
+app.use('/createpost', createpost);
+app.use('/view', view);
+app.use('/takecare', takecare);
+
+// express.static(path.resolve(__dirname, '..', '../public'))
 // var path = require('path');
 
 
@@ -124,6 +127,22 @@ app.post('/signup',(req,res)=>{
     });
 });
 
+app.get('/report/:id',(req,res)=>{
+    let id = req.params.id;
+    let postdata;
+
+    post.findByIdAndDelete(id,(err,data)=>{
+        if(err){
+            console.log(err);
+            return res.redirect('/');
+        }else{
+            postdata = data.toJSON();
+            reportpost.create(postdata);
+        }
+    });
+
+    res.redirect('/cat');
+});
 
 app.get('/signout',(req,res)=>{
     req.logout();

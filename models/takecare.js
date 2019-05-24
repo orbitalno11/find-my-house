@@ -5,6 +5,8 @@ const router = express.Router();
 let post = require('./post');
 let User = require('./user');
 
+router.use(express.static(path.resolve('./public')));
+
 router.get('/cat_:id',(req,res)=>{
     let val = req.params.id;
     let userdata, postdata;
@@ -21,23 +23,13 @@ router.get('/cat_:id',(req,res)=>{
                     // userdata = data;
                     // console.log(data);
                     // console.log(data2);
+                    // let val = path.join(__dirname, '/../public');
+                    // console.log(val);
                     res.render('takeCare',{postdata: data,userdata: data2});
                 }
             });
         }
     });
-
-    // User.findOne({username: postdata.owner},(err,data)=>{
-    //     if(err){
-    //         console.log(err);
-    //     }else{
-    //         userdata = data;
-    //     }
-    // });
-
-    // console.log(postdata);
-    // console.log(userdata);
-    // res.redirect('/cat');
 });
 
 module.exports = router;

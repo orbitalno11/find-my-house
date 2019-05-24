@@ -4,6 +4,8 @@ const router = express.Router();
 
 let post = require('./post');
 
+router.use(express.static(path.resolve('./public')));
+
 router.get('/cat_:id',(req,res)=>{
     let val = req.params.id;
 

@@ -2,8 +2,11 @@ const express = require('express');
 const BodyParser = require('body-parser');
 const authentication = require('./authentication');
 const router = express.Router();
+const path = require('path');
 
 let post = require('./post');
+
+router.use(express.static(path.resolve('./public')));
 
 express().use(BodyParser.urlencoded({extended: true}));
 
