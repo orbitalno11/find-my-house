@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/FindMyHouse2');
+// mongoose.connect('mongodb://localhost/FindMyHouse2');
+const connectString = 'mongodb+srv://stn:<Sitnon@2541>@cluster0-mb8sl.gcp.mongodb.net/test?retryWrites=true';
+mongoose.connect(connectString);
 
 const Schema = mongoose.Schema;
 
