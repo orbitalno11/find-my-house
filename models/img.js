@@ -9,9 +9,13 @@ router.use(bodyParser.urlencoded({ extended: true }))
 const MongoClient = require('mongodb').MongoClient
 ObjectId = require('mongodb').ObjectId
 
-const myurl = 'mongodb://localhost:27017';
-const dbname = 'FindMyHouse3';
-const collectionname = 'uploadPic';
+// const myurl = 'mongodb://localhost:27017';
+// const dbname = 'FindMyHouse3';
+// const collectionname = 'uploadPic';
+
+const myurl = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+const dbname = 'findmyhouse';
+const collectionname = 'images';
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -47,7 +51,7 @@ router.post('/upload', upload.single('picture'), (req, res) => {
 router.get('/:id', (req, res) => {
   let filename = req.params.id;
 
-  db.collection('images').findOne({ '_id': ObjectId(filename) }, (err, result) => {
+  db.collection('collectionname').findOne({ '_id': ObjectId(filename) }, (err, result) => {
 
     if (err) return console.log(err)
 

@@ -9,10 +9,10 @@ const portNumber = process.env.PORT || 9000;
 
 const multer = require('multer');
 const fs = require('fs-extra');
-// const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-// mongoose.connect(connectString);
-const mongoURI = 'mongodb://localhost/FindMyHouse3';
-mongoose.connect(mongoURI);
+const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+mongoose.connect(connectString);
+// const mongoURI = 'mongodb://localhost/FindMyHouse3';
+// mongoose.connect(mongoURI);
 
 let User = require('./models/user');
 let createpost = require('./models/create_module');
