@@ -6,15 +6,15 @@ let post = require('./post');
 
 router.use(express.static(path.resolve('./public')));
 
-router.get('/cat_:id',(req,res)=>{
+router.get('/cat_:id', (req, res) => {
     let val = req.params.id;
 
-    post.findById(val,(err,data)=>{
-        if(err){
+    post.findById(val, (err, data) => {
+        if (err) {
             console.log(err);
             return res.redirect('/cat');
-        }else{
-            res.render('postDetail',{data: data});
+        } else {
+            res.render('postDetail', { data: data });
             // console.log(data);
         }
     });

@@ -87,7 +87,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <img id="owerPic" src="img/web_avatar.png">
+                                <% let userpic = '/img/userpic/'+ userdata.pic.filename; %>
+                                <img id="owerPic" src=<%= userpic %>>
                             </div>
 
                             <div class="col-7">

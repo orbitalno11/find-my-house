@@ -13,7 +13,16 @@ const UserSchema = new mongoose.Schema({
     district : String,
     province : String,
     zipcode : String,
-    password : String
+    password : String,
+    phone: String,
+    pic: {
+        filename: {
+            type: String,
+            unique: true
+        },
+        contentType: String,
+        image: Buffer
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);

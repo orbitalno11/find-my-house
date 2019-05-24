@@ -19,7 +19,7 @@
 
     <div class="container">
         <div id="signup">
-            <form method="POST" action="/signup">
+            <form method="POST" action="/signup" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <label for="name">ชื่อ (ภาษาไทย)</label>
@@ -35,7 +35,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-6">
                         <div id="uploadUserPic">
                             <label class="file-upload btn btn-primary">
-                                <input type="file" id="imgInp" style="display: none;">
+                                <input type="file" id="picture" name="picture" hidden>
                                 เลือกรูปภาพ
                             </label>
                             <label>รูปภาพควรมีขนาด 640px X 480px</label>
@@ -87,6 +87,12 @@
                     <label class="col-sm-12 col-lg-2 col-form-label" for="zipcode">รหัสไปรษณีย์</label>
                     <div class="col-sm-12 col-lg-10">
                         <input id="zipcode" name="zipcode" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-12 col-lg-2 col-form-label" for="zipcode">เบอร์โทรศัพท์</label>
+                    <div class="col-sm-12 col-lg-10">
+                        <input id="phone" name="phone" type="text" class="form-control" required>
                     </div>
                 </div>
                 <div class="row">

@@ -51,7 +51,7 @@ $(document).ready(function () {
     }
   }
 
-  $("#imgInp").change(function () {
+  $("#picture").change(function () {
     readURL(this);
   });
 });
