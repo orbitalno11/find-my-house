@@ -6,6 +6,11 @@ const passport = require('passport');
 // const passportLocalMongoose = require('passport-local-mongoose');
 // const path = require('path');
 const portNumber = process.env.PORT || 9000;
+const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+// 'mongodb://stn:' + encodeURIComponent('<stn1998>') + '@cluster0-mb8sl.gcp.mongodb.net:27017/findmyhouse';
+mongoose.connect(connectString);
+
+
 
 let User = require('./models/user');
 let createpost = require('./models/create_module');
@@ -15,7 +20,8 @@ let view = require('./models/view_data');
 let takecare = require('./models/takecare');
 let reportpost = require('./models/reportpost');
 
-mongoose.connect('mongodb://localhost/FindMyHouse2');
+// mongoose.connect('mongodb://localhost/FindMyHouse2');
+
 
 const app = express();
 app.set('view engine','ejs');
