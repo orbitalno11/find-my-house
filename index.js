@@ -42,7 +42,7 @@ app.use(passport.session());
 app.use('/createpost', createpost);
 app.use('/view', view);
 app.use('/takecare', takecare);
-app.use('/img', img);
+app.use('/image', img);
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
