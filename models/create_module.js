@@ -2,11 +2,12 @@ const express = require('express');
 const BodyParser = require('body-parser');
 const authentication = require('./authentication');
 const router = express.Router();
-const path = require('path');
+const paths = require('path');
 
 let post = require('./post');
+let uploadpic = require('./upload');
 
-router.use(express.static(path.resolve('./public')));
+router.use(express.static(paths.resolve('./public')));
 
 express().use(BodyParser.urlencoded({extended: true}));
 
@@ -16,7 +17,10 @@ router.get('/cat', authentication.isLoggedIn, (req,res)=>{
     // console.log(req.session.)
 });
 
-router.post('/cat', authentication.isLoggedIn, (req,res)=>{
+router.post('/cat',authentication.isLoggedIn, uploadpic.upload.single('picture'), (req,res)=>{
+   
+    let imgfile = uploadpic.uploadIMG(req,res);
+
     let postData = {
         petType: 'cat',
         postType: req.body.postType,
@@ -25,7 +29,8 @@ router.post('/cat', authentication.isLoggedIn, (req,res)=>{
         species: req.body.species,
         petStatus: req.body.petStatus,
         moreContact: req.body.moreContact,
-        owner: req.body.owner
+        owner: req.body.owner,
+        pic: imgfile
     };
     
     post.create(postData);

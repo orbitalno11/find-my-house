@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 let Image = new Schema({
     filename: {
-        type: String,
-        unique: true
+        type: String
+        // unique: true
     },
     contentType: String,
     image: Buffer

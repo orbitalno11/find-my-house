@@ -17,12 +17,12 @@ const UserSchema = new mongoose.Schema({
     phone: String,
     pic: {
         filename: {
-            type: String,
-            unique: true
+            type: String
         },
         contentType: String,
         image: Buffer
-    }
+    },
+    starus : String
 });
 
 UserSchema.plugin(passportLocalMongoose);

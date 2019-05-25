@@ -19,7 +19,7 @@
     <% include partials/navbar2 %>
 
     <div class="container">
-        <form class="makePost" method="POST" action="/createpost/cat">
+        <form class="makePost" method="POST" action="/createpost/cat" enctype="multipart/form-data">
             <input type="text" id="petType" name="petType" value="cat" hidden>
             <input type="text" id="owner" name="owner" value=<%= user %> hidden>
             <div class="row">
@@ -43,7 +43,7 @@
                 <div class="col-sm-6 col-lg-4">
                     <div id="uploadcatpic">
                         <label class="file-upload" style="text-align: center">
-                            <input type="file" id="imgInp" style="display: none;">
+                            <input type="file" id="picture" name="picture" required hidden>
                             <img id="img-upload" src="img/cat_post.jpg" style="width: 55%">
                         </label>
                         <!-- <br>

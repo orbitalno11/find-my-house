@@ -37,10 +37,11 @@
             <div class="col-sm-12 col-lg-6">
                 <div class="card w-100 storycard">
                     <div class="card-body">
-                        <h4 id="title" class="card-title"><%= data[i].postType %></h4>
+                        <h4 id="title" class="card-title">[<%= data[i].postType %>]</h4>
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <img id="petPic" src="img/cat_post.jpg">
+                                <% let urlpic = '/image/postpic/'+ data[i].pic.filename; %>
+                                <img id="petPic" src=<%= urlpic %>>
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
                                 <div class="row">

@@ -6,13 +6,10 @@ const passport = require('passport');
 // const passportLocalMongoose = require('passport-local-mongoose');
 // const path = require('path');
 const portNumber = process.env.PORT || 9000;
-
-const multer = require('multer');
-const fs = require('fs-extra');
-const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-mongoose.connect(connectString);
-// const mongoURI = 'mongodb://localhost/FindMyHouse3';
-// mongoose.connect(mongoURI);
+// const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+// mongoose.connect(connectString);
+const mongoURI = 'mongodb://localhost/FindMyHouse2';
+mongoose.connect(mongoURI);
 
 let User = require('./models/user');
 let createpost = require('./models/create_module');
@@ -22,6 +19,7 @@ let view = require('./models/view_data');
 let takecare = require('./models/takecare');
 let reportpost = require('./models/reportpost');
 let img = require('./models/img');
+let uploadpic = require('./models/upload');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -43,32 +41,6 @@ app.use('/createpost', createpost);
 app.use('/view', view);
 app.use('/takecare', takecare);
 app.use('/image', img);
-
-let storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-})
-
-let upload = multer({ storage: storage })
-
-// express.static(path.resolve(__dirname, '..', '../public'))
-// var path = require('path');
-
-
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
-// function isLoggedIn(req, res, next){
-//     if(req.isAuthenticated()){
-//         return next();
-//     }
-//     res.redirect('/signin');
-// }
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -104,7 +76,11 @@ app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {
 });
 
 app.get('/signin', (req, res) => {
-    res.render('signin');
+    if(req.isAuthenticated()){
+        res.render('aboutus');
+    }else{
+        res.render('signin');
+    }
 });
 
 app.post('/signin', authenticattion.passport.authenticate('local', {
@@ -118,14 +94,9 @@ app.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-app.post('/signup', upload.single('picture'), (req, res) => {
-    let image = fs.readFileSync(req.file.path);
-    let encode_image = image.toString('base64');
-    let imgfile = {
-        filename: req.file.filename,
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_image, 'base64')
-    };
+app.post('/signup', uploadpic.upload.single('picture') , (req, res) => {
+    
+    let imgfile = uploadpic.uploadIMG(req,res);
 
     let userData = {
         username: req.body.username,
@@ -140,7 +111,8 @@ app.post('/signup', upload.single('picture'), (req, res) => {
         province: req.body.province,
         zipcode: req.body.zipcode,
         phone: req.body.phone,
-        pic: imgfile
+        pic: imgfile,
+        status: req.body.status
         // password : req.body.password
     };
 

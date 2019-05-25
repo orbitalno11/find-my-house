@@ -39,7 +39,8 @@
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
-                <img id="petPic" class="petDetailPic" src="img/cat_post.jpg">
+                <% let urlpic = '/image/postpic/'+ data.pic.filename; %>
+                <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
             </div>
 
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">

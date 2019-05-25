@@ -32,7 +32,8 @@
                         <h4 class="card-title">[<%= postdata.postType %>]</h4>
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <img id="petPic" src="img/cat_post.jpg">
+                                <% let urlpic = '/image/postpic/'+ postdata.pic.filename; %>
+                                <img id="petPic" src=<%= urlpic %>>
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
                                 <div class="row">
@@ -87,7 +88,12 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <% let userpic = '/image/userpic/'+ userdata.pic.filename; %>
+                                <% let userpic;
+                                if(userdata.pic === null){
+                                    userpic = '/img/web_avartar.png';
+                                }else{
+                                    userpic = '/image/userpic/'+ userdata.pic.filename;
+                                } %>
                                 <img id="owerPic" src=<%= userpic %>>
                             </div>
 
@@ -132,7 +138,7 @@
                                 </label>
                             </div>
                             <div class="col-9">
-                                <label id="telNumber">XXX-XXX-XXXX</label>
+                                <label id="telNumber"><%= userdata.phone %></label>
                             </div>
                         </div>
 
