@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
         contentType: String,
         image: Buffer
     },
-    starus : String
+    status : String
 });
 
 UserSchema.plugin(passportLocalMongoose);

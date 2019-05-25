@@ -116,6 +116,8 @@ app.post('/signup', uploadpic.upload.single('picture') , (req, res) => {
         // password : req.body.password
     };
 
+    // console.log(userData);
+
     User.register(new User(userData), req.body.password, (err, user) => {
         if (err) {
             console.log(err);
