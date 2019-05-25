@@ -19,17 +19,24 @@ let upload = multer({ storage: storage })
 
 
 function uploadIMG(req, res) {
-    let img = fs.readFileSync(req.file.path);
-    let encode_image = img.toString('base64');
-    // Define a JSONobject for the image attributes for saving to database
 
-    let finalImg = {
-        filename: req.file.filename,
-        contentType: req.file.mimetype,
-        image: new Buffer(encode_image, 'base64')
-    };
+    try {
+        let img = fs.readFileSync(req.file.path);
+        let encode_image = img.toString('base64');
+        // Define a JSONobject for the image attributes for saving to database
 
-    return finalImg;
+        let finalImg = {
+            filename: req.file.filename,
+            contentType: req.file.mimetype,
+            image: new Buffer(encode_image, 'base64')
+        };
+
+        return finalImg;
+    }catch(e){
+        return false;
+    }
+
+    
 }
 
 module.exports = {

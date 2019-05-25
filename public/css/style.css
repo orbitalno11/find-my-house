@@ -6,7 +6,7 @@
   background-size: contain;
 }
 
-.banner {
+.banner{
   background-image: url(/img/banner.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -248,42 +248,45 @@ body {
   width: 150px;
 }
 
-.postDetailList {
+.postDetailList{
   font-size: 1.25em;
 }
 
-.postDetailHead {
+.postDetailHead{
   margin-top: 1em;
-  font-size: 1.5em;
-  ;
+  font-size: 1.5em;;
   color: #795548;
   font-weight: bold;
 }
 
-.postDetailHead #postType {
+.postDetailHead #postType{
   color: #ffa726;
   font-weight: bold;
 }
 
-.petDetailPic {
+.petDetailPic{
   width: 100%;
 }
 
-.aboutUsCard {
+.aboutUsCard{
   background-color: #ffa726;
   border-radius: 0.5em;
   color: white;
 }
 
-.reportForm {
+.reportForm{
   background-color: #EF5350;
   margin-top: 1em;
-  color: white;
+  color : white;
 }
 
-#adminNav {
+#adminNav{
   background-color: #ffa726;
   border-radius: 0.5em;
+}
+
+#profilePic{
+  height: 250px;
 }
 
 @media screen and (max-height: 450px) {
@@ -340,6 +343,7 @@ body {
     border-bottom: 0.35em solid #795548;
     /* margin-top: 0rem; */
   }
+  
   /* #carouselExampleControls{
     margin-top: 25%;
   } */
@@ -374,10 +378,6 @@ body {
   #cattab:hover {
     background-color: #fcc26b;
   }
-  #cattab a {
-    text-decoration: none;
-    color: #795548;
-  }
   #dogtab {
     margin-top: 1em;
     padding: 1em;
@@ -387,10 +387,6 @@ body {
   }
   #dogtab:hover {
     background-color: #9e796b;
-  }
-  #dogtab a{
-    text-decoration: none;
-    color: #ffa726;
   }
   #foundationtab {
     margin-top: 1em;
@@ -402,10 +398,6 @@ body {
   }
   #foundationtab:hover {
     background-color: #fcc26b;
-  }
-  #foundationtab a{
-    text-decoration: none;
-    color: #795548;
   }
   .loginbox {
     background-color: #ffa726;
@@ -468,19 +460,19 @@ body {
   .takeCare img {
     width: 120px;
   }
-  .storycard {
+  .storycard{
     font-size: small;
   }
-  .storycard img {
+  .storycard img{
     width: 120px;
   }
-  .postDetailHead {
+  .postDetailHead{
     font-size: large;
   }
-  .postDetailHead .btn-danger {
+  .postDetailHead .btn-danger{
     font-size: small;
   }
-  .postDetailList {
+  .postDetailList{
     font-size: medium;
   }
 }

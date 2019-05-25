@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const router = express.Router();
 const multer = require('multer');
 fs = require('fs-extra');
-let image = require('./imageSchema');
+let image = require('./image_schema');
 router.use(bodyParser.urlencoded({ extended: true }))
 
 const MongoClient = require('mongodb').MongoClient
@@ -36,10 +36,11 @@ router.get('/:id', (req, res) => {
   })
 })
 
-router.get('/userpic/:name', (req, res) => {
-  let name = req.params.name;
+router.get('/userpic/:id', (req, res) => {
+  let name = req.params.id;
 
-  db.collection('users').findOne({ 'pic.filename': name }, (err, result) => {
+  
+  db.collection('users').findOne({ '_id': ObjectId(name) }, (err, result) => {
     if (err) return console.log(err)
 
     // console.log(result);
@@ -48,10 +49,11 @@ router.get('/userpic/:name', (req, res) => {
   })
 })
 
-router.get('/postpic/:name', (req, res) => {
-  let name = req.params.name;
+router.get('/postpic/:id', (req, res) => {
+  let name = req.params.id;
 
-  db.collection('posts').findOne({ 'pic.filename': name }, (err, result) => {
+
+  db.collection('posts').findOne({'_id': ObjectId(name) }, (err, result) => {
     if (err) return console.log(err)
 
     // console.log(result);

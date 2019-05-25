@@ -11,9 +11,9 @@
     <div class="banner">
         <img src="img/cat.png">
         <% if (data.petType === 'cat') {%>
-            <h1>เรื่องแบบแมว</h1>
+        <h1>เรื่องแบบแมว</h1>
         <% }else{%>
-            <h1>เรื่องแบบหมา</h1>
+        <h1>เรื่องแบบหมา</h1>
         <% } %>
         <br>
     </div>
@@ -39,7 +39,7 @@
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
-                <% let urlpic = '/image/postpic/'+ data.pic.filename; %>
+                <% let urlpic = '/image/postpic/'+ data._id; %>
                 <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
             </div>
 
@@ -79,8 +79,17 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 1em;">
+                    <div class="col-auto">
+                        <label class="postDetailList">โพสต์เมื่อ</label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= data.created.toDateString() %></label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
                     <div class="col-12" style="text-align: center;">
-                            <% 
+
+                        <% 
                             let url;
                             if (data.petType === 'cat') {
                                 url = '/takecare/cat_'+data._id;

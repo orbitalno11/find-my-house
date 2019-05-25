@@ -2,8 +2,8 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-let post = require('./post');
-let User = require('./user');
+let post = require('./post_schema');
+let User = require('./user_schema');
 
 router.use(express.static(path.resolve('./public')));
 

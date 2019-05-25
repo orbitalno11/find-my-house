@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-    <title>เรื่องแบบแมว</title>
+    <title>ประวัติการโพสต์</title>
     <% include partials/header %>
 </head>
 
 <body>
-    <% data %>
+    <% postdata %>
     <div class="banner">
         <img src="img/cat.png">
-        <h1>เรื่องแบบแมว</h1>
+
         <br>
     </div>
 
     <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบแมว</a>
+    <a id="pageActive" class="nav-item active nav-link" href="#">ประวัติโพสต์</a>
     <% include partials/navbar2 %>
 
     <div class="searchTab">
@@ -28,20 +28,19 @@
                 </div>
             </div>
         </form>
-        <a href="/createpost/cat" class="btn btn-success" style="margin-top: 1em;">ตั้งโพสต์</a>
     </div>
 
     <div class="container">
         <div class="row">
-            <% for(let i = data.length -1; i >= 0 ; i--){ %>
+            <% for(let i = postdata.length -1; i >= 0 ; i--){ %>
             <div class="col-sm-12 col-lg-6">
                 <div class="card w-100 storycard">
                     <div class="card-body">
-                        <h4 id="title" class="card-title">[<%= data[i].postType %>]</h4>
+                        <h4 id="title" class="card-title">[<%= postdata[i].postType %>]</h4>
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <% let urlpic = '/image/postpic/'+ data[i]._id; %>
-                                <img id="petPic" style="height: 150px; width: 100%" src=<%= urlpic %>>
+                                <% picurl = '/image/postpic/'+postdata[i]._id; %>
+                                <img id="petPic" src=<%= picurl %> style="height: 150px; width: 100%">
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
                                 <div class="row">
@@ -49,7 +48,7 @@
                                         <label>ลักษณะ</label>
                                     </div>
                                     <div class="col-7">
-                                        <label id="identity"><%= data[i].identity %></label>
+                                        <label id="identity"><%= postdata[i].identity %></label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -57,7 +56,7 @@
                                         <label>สายพันธุ์</label>
                                     </div>
                                     <div class="col-7">
-                                        <label id="species"><%= data[i].species %></label>
+                                        <label id="species"><%= postdata[i].species %></label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -65,13 +64,13 @@
                                         <label>สถานะ</label>
                                     </div>
                                     <div class="col-7">
-                                        <label id="petStatus"><%= data[i].petStatus %></label>
+                                        <label id="petStatus"><%= postdata[i].petStatus %></label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <% let url = 'view/cat_'+data[i]._id %>
-                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    <div class="col-12 btn-group">
+                                        <a href="#" class="btn btn-outline-danger btn-dark">ลบ</a>
+                                        <a href=<%= '/edit/post_'+postdata[i]._id %> class="btn btn-outline-primary btn-dark">แก้ไข</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +80,6 @@
             </div>
             <% } %>
         </div>
-    </div>
 
 </body>
 

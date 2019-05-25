@@ -1,11 +1,11 @@
 const express = require('express');
 const BodyParser = require('body-parser');
-const authentication = require('./authentication');
+const authentication = require('./authentication_module');
 const router = express.Router();
 const paths = require('path');
 
-let post = require('./post');
-let uploadpic = require('./upload');
+let post = require('./post_schema');
+let uploadpic = require('./upload_module');
 
 router.use(express.static(paths.resolve('./public')));
 

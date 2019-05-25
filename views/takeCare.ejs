@@ -32,7 +32,7 @@
                         <h4 class="card-title">[<%= postdata.postType %>]</h4>
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <% let urlpic = '/image/postpic/'+ postdata.pic.filename; %>
+                                <% let urlpic = '/image/postpic/'+ postdata._id; %>
                                 <img id="petPic" src=<%= urlpic %>>
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
@@ -92,7 +92,7 @@
                                 if(userdata.pic === null){
                                     userpic = '/img/web_avartar.png';
                                 }else{
-                                    userpic = '/image/userpic/'+ userdata.pic.filename;
+                                    userpic = '/image/userpic/'+ userdata._id;
                                 } %>
                                 <img id="owerPic" src=<%= userpic %>>
                             </div>

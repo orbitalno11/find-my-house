@@ -11,15 +11,17 @@ mongoose.connect(connectString);
 // const mongoURI = 'mongodb://localhost/FindMyHouse2';
 // mongoose.connect(mongoURI);
 
-let User = require('./models/user');
-let createpost = require('./models/create_module');
-let authenticattion = require('./models/authentication');
-let post = require('./models/post');
-let view = require('./models/view_data');
-let takecare = require('./models/takecare');
-let reportpost = require('./models/reportpost');
-let img = require('./models/img');
-let uploadpic = require('./models/upload');
+let User = require('./models/user_schema');
+let createpost = require('./models/create_route');
+let authenticattion = require('./models/authentication_module');
+let post = require('./models/post_schema');
+let view = require('./models/view_route');
+let takecare = require('./models/takecare_route');
+let reportpost = require('./models/reportpost_schema');
+let img = require('./models/img_route');
+let uploadpic = require('./models/upload_module');
+let userRoute = require('./models/user_route');
+let edit = require('./models/edit_route');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -41,6 +43,8 @@ app.use('/createpost', createpost);
 app.use('/view', view);
 app.use('/takecare', takecare);
 app.use('/image', img);
+app.use('/user', userRoute);
+app.use('/edit', edit);
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -77,15 +81,16 @@ app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {
 
 app.get('/signin', (req, res) => {
     if(req.isAuthenticated()){
-        res.render('aboutus');
+        let profile = '/user/'+req.session.passport.user;
+        res.redirect(profile);
     }else{
         res.render('signin');
     }
 });
 
 app.post('/signin', authenticattion.passport.authenticate('local', {
-    successRedirect: '/aboutus',
-    failureRedirect: '/signup'
+    successRedirect: '/signin',
+    failureRedirect: '/signin'
 }), (req, res) => {
 
 });

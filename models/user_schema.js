@@ -22,7 +22,11 @@ const UserSchema = new mongoose.Schema({
         contentType: String,
         image: Buffer
     },
-    status : String
+    status : String,
+    created:{
+        type: Date,
+        default: Date.now
+    }
 });
 
 UserSchema.plugin(passportLocalMongoose);
