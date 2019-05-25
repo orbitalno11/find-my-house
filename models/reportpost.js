@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/FindMyHouse2');
-// const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-// mongoose.connect(connectString);
+// mongoose.connect('mongodb://localhost/FindMyHouse2');
+const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+mongoose.connect(connectString);
 
 const Schema = mongoose.Schema;
 
@@ -16,8 +16,7 @@ let reportPost = new Schema({
     owner: String,
     pic: {
         filename: {
-            type: String,
-            unique: true
+            type: String
         },
         contentType: String,
         image: Buffer
