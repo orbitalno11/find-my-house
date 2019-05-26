@@ -30,7 +30,8 @@ router.post('/cat',authentication.isLoggedIn, uploadpic.upload.single('picture')
         petStatus: req.body.petStatus,
         moreContact: req.body.moreContact,
         owner: req.body.owner,
-        pic: imgfile
+        pic: imgfile,
+        postStatus : req.body.postStatus
     };
     
     post.create(postData);

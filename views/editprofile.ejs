@@ -48,7 +48,7 @@
                             </label>
                             <label>รูปภาพควรมีขนาด 640px X 480px</label>
                             <br>
-                            <% let picurl = '/image/userpic/'+userdata._id; %>
+                            <% let picurl = '/image/user/'+userdata._id; %>
                             <div style="width: 100%;height: 180px; text-align: center;">
                                 <img id="img-upload" src=<%= picurl %> style="width: 240px ;height: 180px;">
                             </div>
@@ -122,7 +122,7 @@
                         <div class="btn-group">
                             <button class="btn btn-success" type="submit">ยืนยันข้อมูล</button>
                             <!-- <a href=<%= '/user/edit_user'+userdata.username+'?_method=PUT' %>>ยืนยันข้อมูล</a> -->
-                            <button class="btn btn-danger" type="reset">ยกเลิก</button>
+                            <a href="/signin" class="btn btn-danger">ยกเลิก</a>
                         </div>
                     </div>
                 </div>

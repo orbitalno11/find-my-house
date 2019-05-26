@@ -41,6 +41,7 @@ router.post('/post/:id', authentication.isLoggedIn, uploadpic.upload.single('pic
         petStatus: req.body.petStatus,
         moreContact: req.body.moreContact,
         owner: req.body.owner,
+        postStatus: req.body.postStatus
     };
 
     if(imgfile != false){
@@ -56,6 +57,24 @@ router.post('/post/:id', authentication.isLoggedIn, uploadpic.upload.single('pic
             }
         });
     }
+});
+
+router.get('/post/admin/:id',(req,res)=>{
+    let id = req.params.id;
+
+    authentication.isAdmin(req,(state)=>{
+        if(state){
+            post.findByIdAndUpdate(id,{postStatus: 'ปกติ'},(err, update)=>{
+                if(err){
+                    console.log(err);
+                }else{
+                    res.redirect('/view/post_'+id);
+                }
+            });
+        }else{
+            res.redirect('/signin');
+        }
+    });
 });
 
 module.exports = router;

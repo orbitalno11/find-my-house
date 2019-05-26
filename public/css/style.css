@@ -298,6 +298,10 @@ body {
   }
 }
 
+.img-fluid{
+  max-height: 150px;
+}
+
 /* Latop L Screen */
 
 @media screen and (max-width: 1440px) {
@@ -378,6 +382,10 @@ body {
   #cattab:hover {
     background-color: #fcc26b;
   }
+  #cattab a{
+    text-decoration: none;
+    color: #795548;
+  }
   #dogtab {
     margin-top: 1em;
     padding: 1em;
@@ -387,6 +395,10 @@ body {
   }
   #dogtab:hover {
     background-color: #9e796b;
+  }
+  #dogtab a{
+    text-decoration: none;
+    color: #ffa726;
   }
   #foundationtab {
     margin-top: 1em;
@@ -398,6 +410,10 @@ body {
   }
   #foundationtab:hover {
     background-color: #fcc26b;
+  }
+  #foundationtab a{
+    text-decoration: none;
+    color: #795548;
   }
   .loginbox {
     background-color: #ffa726;

@@ -8,6 +8,8 @@
 
 <body>
     <% data %>
+    <% authen %>
+    <% user %>
     <div class="banner">
         <img src="img/cat.png">
         <% if (data.petType === 'cat') {%>
@@ -32,14 +34,19 @@
                 <label id="postType"><%= data.postType %></label>
             </div>
             <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
-                <% let report = '/report/'+data._id; %>
+                <% let report = '/report_'+data._id; %>
+                <% if(data.postStatus != 'ถูกแจ้งผิดกฎ'){ %>
                 <a href=<%= report %> class="btn btn-danger">แจ้งผิดกฏ</a>
+                <% } %>
+                <% if(authen && user === data.owner){ %>
+                <a href="/edit/post_<%= data._id %>" class="btn btn-warning">แก้ไข</a>
+                <% } %>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
-                <% let urlpic = '/image/postpic/'+ data._id; %>
+                <% let urlpic = '/image/post/'+ data._id; %>
                 <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
             </div>
 
@@ -76,6 +83,14 @@
                     </div>
                     <div class="col-8 col-md-9 col-lg-9">
                         <input id="petStatus" class="form-control" readonly value=<%= data.petStatus %>>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-auto">
+                        <label class="postDetailList">สถานะโพสต์</label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= data.postStatus %></label>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 1em;">

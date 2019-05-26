@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 // const LocalStrategy = require('passport-local');
 // const passportLocalMongoose = require('passport-local-mongoose');
-// const path = require('path');
+const path = require('path');
 const portNumber = process.env.PORT || 9000;
 const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
 mongoose.connect(connectString);
@@ -12,7 +12,7 @@ mongoose.connect(connectString);
 // mongoose.connect(mongoURI);
 
 let User = require('./models/user_schema');
-let createpost = require('./models/create_route');
+let create = require('./models/create_route');
 let authenticattion = require('./models/authentication_module');
 let post = require('./models/post_schema');
 let view = require('./models/view_route');
@@ -22,6 +22,8 @@ let img = require('./models/img_route');
 let uploadpic = require('./models/upload_module');
 let userRoute = require('./models/user_route');
 let edit = require('./models/edit_route');
+let remove = require('./models/delete_module');
+let admin = require('./models/admin_route');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -39,12 +41,14 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/createpost', createpost);
+app.use('/create', create);
 app.use('/view', view);
 app.use('/takecare', takecare);
 app.use('/image', img);
 app.use('/user', userRoute);
 app.use('/edit', edit);
+app.use('/delete', remove);
+app.use('/admin', admin);
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -80,10 +84,10 @@ app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {
 });
 
 app.get('/signin', (req, res) => {
-    if(req.isAuthenticated()){
-        let profile = '/user/'+req.session.passport.user;
+    if (req.isAuthenticated()) {
+        let profile = '/user/' + req.session.passport.user;
         res.redirect(profile);
-    }else{
+    } else {
         res.render('signin');
     }
 });
@@ -96,12 +100,17 @@ app.post('/signin', authenticattion.passport.authenticate('local', {
 });
 
 app.get('/signup', (req, res) => {
-    res.render('signup');
+    if (authenticattion.checkLogIn(req, res)) {
+        res.redirect('/user/' + req.session.passport.user);
+    } else {
+        res.render('signup');
+    }
+
 });
 
-app.post('/signup', uploadpic.upload.single('picture') , (req, res) => {
-    
-    let imgfile = uploadpic.uploadIMG(req,res);
+app.post('/signup', uploadpic.upload.single('picture'), (req, res) => {
+
+    let imgfile = uploadpic.uploadIMG(req, res);
 
     let userData = {
         username: req.body.username,
@@ -134,27 +143,46 @@ app.post('/signup', uploadpic.upload.single('picture') , (req, res) => {
     });
 });
 
-app.get('/report/:id', (req, res) => {
+app.get('/report_:id', (req, res) => {
     let id = req.params.id;
-    let postdata;
 
-    post.findByIdAndDelete(id, (err, data) => {
+    post.findById(id, (err, data) => {
         if (err) {
             console.log(err);
-            return res.redirect('/');
+            return res.redirect('back');
         } else {
-            postdata = data.toJSON();
-            reportpost.create(postdata);
+            res.render('reportform', { postdata: data });
+        }
+    });
+})
+
+app.post('/report/:id', (req, res) => {
+    let id = req.params.id;
+    let reportData = {
+        reporter: req.body.reporter,
+        reportDate: Date.now(),
+        reportContact: {
+            email: req.body.reporterEmail,
+            phone: req.body.reporterPhone
+        },
+        postStatus: 'ถูกแจ้งผิดกฎ'
+    };
+
+    post.findByIdAndUpdate(id, reportData, (err, update) => {
+        if (err) {
+            console.log(err);
         }
     });
 
-    res.redirect('/cat');
+    res.redirect('/view/post_' + id);
+
 });
+
 
 app.get('/signout', (req, res) => {
     req.logout();
     res.redirect('/');
-})
+});
 
 app.get('*', (req, res) => {
     res.send('NOT FOUND');

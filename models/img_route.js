@@ -22,21 +22,21 @@ MongoClient.connect(myurl, (err, client) => {
   db = client.db(dbname);
 })
 
-router.get('/:id', (req, res) => {
-  let filename = req.params.id;
+// router.get('/:id', (req, res) => {
+//   let filename = req.params.id;
 
-  db.collection('collectionname').findOne({ '_id': ObjectId(filename) }, (err, result) => {
+//   db.collection('collectionname').findOne({ '_id': ObjectId(filename) }, (err, result) => {
 
-    if (err) return console.log(err)
+//     if (err) return console.log(err)
 
-    res.contentType('image/jpeg');
-    res.send(result.image.buffer);
+//     res.contentType('image/jpeg');
+//     res.send(result.image.buffer);
 
 
-  })
-})
+//   })
+// })
 
-router.get('/userpic/:id', (req, res) => {
+router.get('/user/:id', (req, res) => {
   let name = req.params.id;
 
   
@@ -49,7 +49,7 @@ router.get('/userpic/:id', (req, res) => {
   })
 })
 
-router.get('/postpic/:id', (req, res) => {
+router.get('/post/:id', (req, res) => {
   let name = req.params.id;
 
 

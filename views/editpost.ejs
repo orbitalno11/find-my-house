@@ -29,12 +29,14 @@
                 </div>
                 <div class="col-sm-12 col-lg-9">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา" <% if(postdata.postType === 'ตามหา') {%> checked <% } %>>
+                        <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา"
+                            <% if(postdata.postType === 'ตามหา') {%> checked <% } %>>
                         <label class="form-check-label">ตามหา</label>
                         <label class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="หาบ้าน" <% if(postdata.postType === 'หาบ้าน') {%> checked <% } %>>
+                        <input class="form-check-input" type="radio" id="postType" name="postType" value="หาบ้าน"
+                            <% if(postdata.postType === 'หาบ้าน') {%> checked <% } %>>
                         <label class="form-check-label">หาบ้าน</label>
                         <label class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
                     </div>
@@ -45,7 +47,7 @@
                     <div id="uploadcatpic">
                         <label class="file-upload" style="text-align: center">
                             <input type="file" id="picture" name="picture" hidden>
-                            <img id="img-upload" src=<%= '/image/postpic/'+postdata._id %> style="width: 55%">
+                            <img id="img-upload" src=<%= '/image/post/'+postdata._id %> style="width: 55%">
                         </label>
                         <!-- <br>
                         <div style="width: 100%;height: 180px; text-align: center;">
@@ -87,6 +89,32 @@
                     <label>ข้อมูลติดต่อเพิ่มเติม</label>
                     <textarea class="form-control" id="moreContact" name="moreContact"
                         rows="5"><%= postdata.moreContact %></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-6">
+                    <label>ปรับสถานะโพสต์</label>
+                    <select class="form-control" id="postStatus" name="postStatus">
+                        <% if(postdata.postStatus === 'ปกติ'){ %>
+                        <option value="ปกติ">ปกติ</option>
+                        <option value="ปิดโพสต์">ปิดโพสต์</option>
+                        <% }else if(postdata.postStatus === 'ถูกแจ้งผิดกฎ') { %>
+                        <option value="ถูกแจ้งผิดกฎ">ผิดกฎ</option>
+                        <% }else if(postdata.postStatus === 'ปิดโพสต์') { %>
+                        <option value="ปิดโพสต์">ปิดโพสต์</option>
+                        <option value="ปกติ">ปกติ</option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-6">
+                    <label>
+                        ข้อควรทราบเกี่ยวกับสถานะโพสต์ !!
+                    </label>
+                    <p class="someDetail">
+                        1. การปรับสถานะโพสต์เป็น 'ปิดโพสต์' หมายถึง สามารถหาบ้าน หรือผู้รับเลี้ยงใหม่ได้แล้ว และโพสต์จะถูกลบออกจากเว็บไซต์ภายใน 7 - 14 วัน หลังจากปรับสถานะ <br>
+                        2. หากโพสต์ของท่านถูกแจ้งผิดกฎ (สถานะขึ้นเป็น 'ผิดกฎ') ท่านต้องทำการติดต่อ Admin เพื่อทำการยื่นยันและปรับสถานะเท่านั้น ผ่าน e-mail : example@example.com
+                    </p>
                 </div>
             </div>
             <div class="row" style="margin-top: 1em;">
