@@ -32,7 +32,8 @@
                         <h4 class="card-title">[<%= postdata.postType %>]</h4>
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <img id="petPic" src="img/cat_post.jpg">
+                                <% let urlpic = '/image/post/'+ postdata._id; %>
+                                <img id="petPic" src=<%= urlpic %>>
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
                                 <div class="row">
@@ -64,9 +65,9 @@
                                         <% 
                                             let url;
                                             if (postdata.petType === 'cat') {
-                                                url = '/view/cat_'+postdata._id
+                                                url = '/view/post_'+postdata._id
                                             }else{
-                                                url = '/view/cat_'+postdata._id;
+                                                url = '/view/post_'+postdata._id;
                                             } %>
                                         <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                                     </div>
@@ -87,7 +88,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
-                                <img id="owerPic" src="img/web_avatar.png">
+                                <% let userpic;
+                                if(userdata.pic === null){
+                                    userpic = '/img/web_avartar.png';
+                                }else{
+                                    userpic = '/image/user/'+ userdata._id;
+                                } %>
+                                <img id="owerPic" src=<%= userpic %>>
                             </div>
 
                             <div class="col-7">
@@ -131,7 +138,7 @@
                                 </label>
                             </div>
                             <div class="col-9">
-                                <label id="telNumber">XXX-XXX-XXXX</label>
+                                <label id="telNumber"><%= userdata.phone %></label>
                             </div>
                         </div>
 

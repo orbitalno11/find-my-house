@@ -8,12 +8,14 @@
 
 <body>
     <% data %>
+    <% authen %>
+    <% user %>
     <div class="banner">
         <img src="img/cat.png">
         <% if (data.petType === 'cat') {%>
-            <h1>เรื่องแบบแมว</h1>
+        <h1>เรื่องแบบแมว</h1>
         <% }else{%>
-            <h1>เรื่องแบบหมา</h1>
+        <h1>เรื่องแบบหมา</h1>
         <% } %>
         <br>
     </div>
@@ -32,14 +34,20 @@
                 <label id="postType"><%= data.postType %></label>
             </div>
             <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
-                <% let report = '/report/'+data._id; %>
+                <% let report = '/report_'+data._id; %>
+                <% if(data.postStatus != 'ถูกแจ้งผิดกฎ'){ %>
                 <a href=<%= report %> class="btn btn-danger">แจ้งผิดกฏ</a>
+                <% } %>
+                <% if(authen && user === data.owner){ %>
+                <a href="/edit/post_<%= data._id %>" class="btn btn-warning">แก้ไข</a>
+                <% } %>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
-                <img id="petPic" class="petDetailPic" src="img/cat_post.jpg">
+                <% let urlpic = '/image/post/'+ data._id; %>
+                <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
             </div>
 
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
@@ -78,8 +86,25 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 1em;">
+                    <div class="col-auto">
+                        <label class="postDetailList">สถานะโพสต์</label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= data.postStatus %></label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-auto">
+                        <label class="postDetailList">โพสต์เมื่อ</label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= data.created.toDateString() %></label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
                     <div class="col-12" style="text-align: center;">
-                            <% 
+
+                        <% 
                             let url;
                             if (data.petType === 'cat') {
                                 url = '/takecare/cat_'+data._id;

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>แจ้งโพสต์ผิดกฎ</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% postdata %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>แจ้งโพสต์ผิดกฎ</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">แจ้งโพสต์ผิดกฎ</a>
+    <% include partials/navbar2 %>
+
+    <div class="container">
+
+        <div class="row postDetailHead">
+            <div class="col-5 col-md-auto col-lg-auto">
+                <label>ประเภทโพสต์</label>
+            </div>
+            <div class="col-3 col-md-auto col-lg-auto">
+                <label id="postType"><%= postdata.postType %></label>
+            </div>
+            <!-- <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
+                    <a href="#" class="btn btn-danger">แจ้งผิดกฏ</a>
+                </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
+                <img id="petPic" class="petDetailPic" src=<%= '/image/post/'+postdata._id %>>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
+                <div class="row no-gutters" style="margin-top: 1em;">
+                    <div class="col-4 col-md-2 col-lg-3">
+                        <label class="postDetailList">ลักษณะเด่น</label>
+                    </div>
+                    <div class="col-8 col-md-10 col-lg-9">
+                        <textarea id="identity" class="form-control" rows="1"
+                            readonly><%= postdata.identity %></textarea>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <label class="postDetailList">ลักษณะโดยละเอียด</label>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <textarea rows="5" class="form-control" readonly><%= postdata.moreDetail %></textarea>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-3 col-md-2 col-lg-auto">
+                        <label class="postDetailList">สายพันธุ์</label>
+                    </div>
+                    <div class="col-9 col-md-10 col-lg-auto">
+                        <input id="moreDetail" class="form-control" readonly value=<%= postdata.species %>>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-4 col-md-3 col-lg-auto">
+                        <label class="postDetailList">สถานะปัจจุบัน</label>
+                    </div>
+                    <div class="col-8 col-md-9 col-lg-auto">
+                        <input id="petStatus" class="form-control" readonly value=<%= postdata.petType %>>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 1em">
+            <div class="col-12">
+                <label class="postDetailHead">ข้อมูลผู้แจ้ง</label>
+            </div>
+        </div>
+
+        <form method="POST" action="/report/<%= postdata._id %>">
+
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-3 col-md-2 col-lg-auto">
+                <label class="postDetailList">ชื่อ-นามสกุล</label>
+            </div>
+            <div class="col-9 col-md-10 col-lg-10">
+                <input id="reporter" name="reporter" type="text" class="form-control" required
+                    placeholder="นายน้องแมว รักน้องหมา">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-3 col-md-2 col-lg-auto">
+                <label class="postDetailList">e-mail</label>
+            </div>
+            <div class="col-9 col-md-10 col-lg-10">
+                <input id="reporterEmail" name="reporterEmail" type="email" class="form-control" required
+                    placeholder="report@findMyHouse.example">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-3 col-md-2 col-lg-auto">
+                <label class="postDetailList">เบอร์โทรศัพท์</label>
+            </div>
+            <div class="col-9 col-md-10 col-lg-10">
+                <input id="reporterPhone" name="reporterPhone" type="text" class="form-control" required
+                    placeholder="098-765-4321">
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 1em;">
+            <div class="col-12" style="text-align: center;">
+                <!-- <button class="btn btn-primary" type="submit">อนุมัติโพสต์</button> -->
+                <button class="btn btn-danger" type="submit">แจ้งผิดกฏ</button>
+                <!-- <a href="takeCare.html" class="btn takeCareBTN">สนใจรับเลี้ยง</a> -->
+            </div>
+        </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

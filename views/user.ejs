@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ยินดีต้อนรับ</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% userdata %>
+    <% authen %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>ยินดีต้อนรับ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">โปรไฟล์</a>
+    <% include partials/navbar2 %>
+
+    <% if(userdata.status === 'admin' && authen) { %>
+        <% include partials/adminnav %>
+    <% } %>
+
+    <div class="container" style="margin-top: 1em;">
+        <div class="row">
+            <div class="col-12 col-md-5 col-lg-4" style="text-align: center;">
+                <% let picurl = '/image/user/'+userdata._id; %>
+                <img id="profilePic" src=<%= picurl %>>
+            </div>
+
+            <div class="col-12 col-md-7 col-lg-8" style="margin-top: auto; margin-bottom: auto">
+                <div class="row" style="margin-top: 2em;">
+                    <div class="col-auto">
+                        <label class="postDetailList">ชื่อ : </label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList">
+                            <%= userdata.name %>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-auto">
+                        <label class="postDetailList">นามสกุล : </label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= userdata.lname %></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-auto">
+                        <label class="postDetailList">e-mail : </label>
+                    </div>
+                    <div class="col-auto">
+                        <label class="postDetailList"><%= userdata.username %></label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <% let moreurl = '/user/detail_'+ userdata.username; %>
+                    <div class="col-4 col-md-auto" style="text-align: center;">
+                        <a href=<%= moreurl %> class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a>
+                    </div>
+
+                    <% if(authen) {%>
+                    <div class="col-4 col-md-auto" style="text-align: center;">
+                        <a href="<%= '/view/user_post_'+userdata.username %>" class="btn btn-warning">ดูประวัติโพสต์</a>
+                    </div>
+
+                    <div class="col-4 col-md-auto" style="text-align: center;">
+                        <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
