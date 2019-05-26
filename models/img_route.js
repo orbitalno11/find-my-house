@@ -39,27 +39,39 @@ MongoClient.connect(myurl, (err, client) => {
 router.get('/user/:id', (req, res) => {
   let name = req.params.id;
 
-  
+
   db.collection('users').findOne({ '_id': ObjectId(name) }, (err, result) => {
     if (err) return console.log(err)
 
     // console.log(result);
     res.contentType('image/jpeg');
     res.send(result.pic.image.buffer);
-  })
-})
+  });
+});
 
 router.get('/post/:id', (req, res) => {
   let name = req.params.id;
 
 
-  db.collection('posts').findOne({'_id': ObjectId(name) }, (err, result) => {
+  db.collection('posts').findOne({ '_id': ObjectId(name) }, (err, result) => {
     if (err) return console.log(err)
 
     // console.log(result);
     res.contentType('image/jpeg');
     res.send(result.pic.image.buffer);
-  })
-})
+  });
+});
+
+router.get('/foundation/:id', (req, res) => {
+  let id = req.params.id;
+
+  db.collection('foundations').findOne({ '_id': ObjectId(id) }, (err, result) => {
+    if (err) return console.log(err)
+
+    // console.log(result);
+    res.contentType('image/jpeg');
+    res.send(result.pic.image.buffer);
+  });
+});
 
 module.exports = router;

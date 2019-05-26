@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>รายละเอียดมูลนิธิเพื่อสัตว์</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% postdata %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>มูลนิธิเพื่อสัตว์</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">มูลนิธิเพื่อสัตว์</a>
+    <% include partials/navbar2 %>
+
+    <div class="container" style="margin-top: 1em;">
+        <div class="card">
+            <img id="foundationPic" class="card-img-top img-fluid" src="/image/foundation/<%= postdata._id %>">
+            <div class="card-body w-100">
+                <label>
+                    <h1 id="foundationName"><%= postdata.name %></h1>
+                </label>
+                <p id="foundationDetail">
+                    <%= postdata.description %>
+                </p>
+                <h1>ช่องทางติดต่อ</h1>
+                <div class="row">
+                    <div class="col-auto">
+                        <label>เบอร์โทร</label>
+                    </div>
+                    <div class="col-auto">
+                        <label id="foundationPhone"><%= postdata.contact.phone %></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <label>ที่อยู่</label>
+                    </div>
+                    <div class="col-auto">
+                        <label id="foundationAdress"><%= postdata.contact.address %></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
