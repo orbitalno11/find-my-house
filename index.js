@@ -24,6 +24,7 @@ let userRoute = require('./models/user_route');
 let edit = require('./models/edit_route');
 let remove = require('./models/delete_module');
 let admin = require('./models/admin_route');
+let foundation = require('./models/foundation_route');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -49,13 +50,10 @@ app.use('/user', userRoute);
 app.use('/edit', edit);
 app.use('/delete', remove);
 app.use('/admin', admin);
+app.use('/foundation', foundation);
 
 app.get('/', (req, res) => {
     res.render('home');
-});
-
-app.get('/foundation', (req, res) => {
-    res.render('foundation');
 });
 
 app.get('/howto', (req, res) => {
