@@ -6,10 +6,10 @@ const passport = require('passport');
 // const passportLocalMongoose = require('passport-local-mongoose');
 const path = require('path');
 const portNumber = process.env.PORT || 9000;
-const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-mongoose.connect(connectString);
-// const mongoURI = 'mongodb://localhost/FindMyHouse2';
-// mongoose.connect(mongoURI);
+// const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+// mongoose.connect(connectString);
+const mongoURI = 'mongodb://localhost/FindMyHouse2';
+mongoose.connect(mongoURI);
 
 let User = require('./models/user_schema');
 let create = require('./models/create_route');
@@ -17,7 +17,6 @@ let authenticattion = require('./models/authentication_module');
 let post = require('./models/post_schema');
 let view = require('./models/view_route');
 let takecare = require('./models/takecare_route');
-let reportpost = require('./models/reportpost_schema');
 let img = require('./models/img_route');
 let uploadpic = require('./models/upload_module');
 let userRoute = require('./models/user_route');
@@ -25,6 +24,7 @@ let edit = require('./models/edit_route');
 let remove = require('./models/delete_module');
 let admin = require('./models/admin_route');
 let foundation = require('./models/foundation_route');
+let howto = require('./models/howto_route');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -51,17 +51,14 @@ app.use('/edit', edit);
 app.use('/delete', remove);
 app.use('/admin', admin);
 app.use('/foundation', foundation);
+app.use('/howto', howto);
 
 app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/howto', (req, res) => {
-    res.render('howto');
-});
-
 app.get('/cat', (req, res) => {
-    post.find((err, data) => {
+    post.find({}, null, { sort: { created: -1 } }, (err, data) => {
         if (err) {
             console.log(err);
             return res.redirect('/');
