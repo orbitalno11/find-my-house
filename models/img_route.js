@@ -9,13 +9,13 @@ router.use(bodyParser.urlencoded({ extended: true }))
 const MongoClient = require('mongodb').MongoClient
 ObjectId = require('mongodb').ObjectId
 
-const myurl = 'mongodb://localhost:27017';
-const dbname = 'FindMyHouse2';
-const collectionname = 'images';
-
-// const myurl = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-// const dbname = 'findmyhouse';
+// const myurl = 'mongodb://localhost:27017';
+// const dbname = 'FindMyHouse2';
 // const collectionname = 'images';
+
+const myurl = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+const dbname = 'findmyhouse';
+const collectionname = 'images';
 
 MongoClient.connect(myurl, (err, client) => {
   if (err) return console.log(err)
