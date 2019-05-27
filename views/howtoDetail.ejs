@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>รายละเอียดคู่มือการเลี้ยง</title>
+    <% include partials/header %>
+</head>
+
+<body>
+    <% postdata %>
+    <div class="banner">
+        <img src="img/cat.png">
+        <h1>คู่มือการเลี้ยง</h1>
+        <br>
+    </div>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">คู่มือการเลี้ยง</a>
+    <% include partials/navbar2 %>
+
+    <div class="container" style="margin-top: 1em;">
+        <div class="card">
+            <img id="foundationPic" class="card-img-top img-fluid" >
+            <div class="card-body w-100">
+                <label>
+                    <h1 id="foundationName"><%= postdata.title %></h1>
+                </label>
+                <p id="foundationDetail">
+                    <%= postdata.description %>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

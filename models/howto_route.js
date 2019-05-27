@@ -2,19 +2,18 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 
-let foundation = require('./foundation_schema');
+let howto = require('./howto_schema');
 let authentication = require('./authentication_module');
-let upload = require('./upload_module');
 
 router.use(express.static(path.resolve('./public')));
 
 router.get('/', (req, res) => {
-    foundation.find((err, data) => {
-        if (err) {
+    howto.find({}, null, {sort : {_id: -1}}, (err,data)=>{
+        if(err){
             console.log(err);
             res.redirect('/');
-        } else {
-            res.render('foundation', { data: data });
+        }else{
+            res.render('howto',{data: data});
         }
     });
 });
@@ -22,12 +21,12 @@ router.get('/', (req, res) => {
 router.get('/list', authentication.isLoggedIn, (req,res)=>{
     authentication.isAdmin(req,(state)=>{
         if(state){
-            foundation.find({}, null, {sort : {_id: -1}}, (err,data)=>{
+            howto.find({}, null, {sort : {_id: -1}}, (err,data)=>{
                 if(err){
                     console.log(err);
                     res.redirect('/signin');
                 }else{
-                    res.render('foundationList',{data: data});
+                    res.render('howtoList',{data: data});
                 }
             });
         }else{
@@ -39,44 +38,39 @@ router.get('/list', authentication.isLoggedIn, (req,res)=>{
 router.get('/create', authentication.isLoggedIn, (req, res) => {
     authentication.isAdmin(req, (state) => {
         if (state) {
-            res.render('foundationCreate');
+            res.render('howtoCreate');
         } else {
             res.redirect('/signin');
         }
     });
 });
 
-router.post('/create', authentication.isLoggedIn, upload.upload.single('picture'), (req, res) => {
-    let imgfile = upload.uploadIMG(req, res);
-    let foundationData = {
-        name: req.body.name,
-        description: req.body.description,
-        contact: {
-            phone: req.body.phone,
-            address: req.body.address,
-        },
-        pic: imgfile
-    }
+router.post('/create', authentication.isLoggedIn, (req, res) => {
+    let howtoData = {
+        title: req.body.title,
+        description: req.body.description
+    };
+
     authentication.isAdmin(req, (state) => {
         if (state) {
-            foundation.create(foundationData);
+            howto.create(howtoData);
             res.redirect('/signin');
         } else {
             res.redirect('/signin');
         }
-    })
+    });
 });
 
 router.get('/edit_:id', authentication.isLoggedIn, (req, res) => {
     let id = req.params.id;
     authentication.isAdmin(req, (state) => {
         if (state) {
-            foundation.findById(id, (err, data) => {
+            howto.findById(id, (err, data) => {
                 if (err) {
                     console.log(err);
                     res.redirect('/signin');
                 } else {
-                    res.render('foundationEdit', { data: data });
+                    res.render('howtoEdit', { data: data });
                 }
             });
         }else{
@@ -85,31 +79,22 @@ router.get('/edit_:id', authentication.isLoggedIn, (req, res) => {
     });
 });
 
-router.post('/edit/:id', authentication.isLoggedIn, upload.upload.single('picture'), (req, res) => {
+router.post('/edit/:id', authentication.isLoggedIn, (req, res) => {
     let id = req.params.id;
-    let imgfile = upload.uploadIMG(req, res);
 
-    let foundationData = {
-        name: req.body.name,
+    let howtoData = {
+        name: req.body.title,
         description: req.body.description,
-        contact: {
-            phone: req.body.phone,
-            address: req.body.address,
-        }
     };
-
-    if(imgfile != false){
-        foundationData.pic = imgfile;
-    }
 
     authentication.isAdmin(req, (state)=>{
         if(state){
-            foundation.findByIdAndUpdate(id, foundationData, (err, update)=>{
+            howto.findByIdAndUpdate(id, howtoData, (err, update)=>{
                 if(err){
                     console.log(err);
                     res.redirect('/signin');
                 }else{
-                    res.redirect('/foundation/'+id);
+                    res.redirect('/howto/'+id);
                 }
             });
         }else{
@@ -122,16 +107,14 @@ router.post('/edit/:id', authentication.isLoggedIn, upload.upload.single('pictur
 router.get('/:id', (req, res) => {
     let id = req.params.id;
 
-    foundation.findById(id, (err, data) => {
+    howto.findById(id, (err, data) => {
         if (err) {
             console.log(err);
-            return res.redirect('/foundation');
+            return res.redirect('/howto');
         } else {
-            res.render('foundationDetail', { postdata: data });
+            res.render('howtoDetail', { postdata: data });
         }
-    })
+    });
 });
-
-
 
 module.exports = router;
