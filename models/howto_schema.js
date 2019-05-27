@@ -8,6 +8,13 @@ let howto = new Schema({
     created:{
         type: Date,
         default: Date.now
+    },
+    pic: {
+        filename: {
+            type: String
+        },
+        contentType: String,
+        image: Buffer
     }
 });
 

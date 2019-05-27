@@ -6,7 +6,7 @@
   background-size: contain;
 }
 
-.banner{
+.banner {
   background-image: url(/img/banner.jpg);
   background-position: center center;
   background-repeat: no-repeat;
@@ -16,10 +16,12 @@
   height: 250px;
   padding: 2em;
   text-align: right;
+  margin-top: 58px;
 }
 
 nav {
   background-color: #795548;
+  height: 100;
   /* margin-top: 20%; */
 }
 
@@ -159,7 +161,7 @@ body {
 }
 
 .searchTab {
-  width: 75%;
+  width: 100%;
   margin: 1em auto;
   font-size: 1.5em;
 }
@@ -248,45 +250,105 @@ body {
   width: 150px;
 }
 
-.postDetailList{
+.postDetailList {
   font-size: 1.25em;
 }
 
-.postDetailHead{
+.postDetailHead {
   margin-top: 1em;
-  font-size: 1.5em;;
+  font-size: 1.5em;
+  ;
   color: #795548;
   font-weight: bold;
 }
 
-.postDetailHead #postType{
+.postDetailHead #postType {
   color: #ffa726;
   font-weight: bold;
 }
 
-.petDetailPic{
+.petDetailPic {
   width: 100%;
 }
 
-.aboutUsCard{
+.aboutUsCard {
   background-color: #ffa726;
   border-radius: 0.5em;
   color: white;
 }
 
-.reportForm{
+.reportForm {
   background-color: #EF5350;
   margin-top: 1em;
-  color : white;
+  color: white;
 }
 
-#adminNav{
+#adminNav {
   background-color: #ffa726;
   border-radius: 0.5em;
 }
 
-#profilePic{
+#profilePic {
   height: 250px;
+}
+
+#recentlyMobile {
+  display: none;
+}
+
+.recentlyPost {
+  background-color: #f8e2c2;
+  border-radius: 0em 0em 0.5em 0.5em;
+}
+
+.navtran {
+  transition: background-color 2s ease 0s;
+  /* background-color: #0977DF; */
+  background-color: #ffa726;
+}
+
+.highligth{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+.showArea{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+.showPost{
+  width: 80%;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+}
+
+.cattab {
+  margin: 0.5em 0.5em 0em 0.5em;
+  padding: 1em;
+  background-color: #ffa726;
+  border-radius: 0.5em;
+  color: #795548;
+}
+.cattab:hover {
+  background-color: #fcc26b;
+}
+.cattab a {
+  text-decoration: none;
+  color: #795548;
+}
+
+.memberBox {
+  background-color:  #795548;
+  border-radius: 2em;
+  padding: 2em;
+  color: white;
 }
 
 @media screen and (max-height: 450px) {
@@ -347,7 +409,30 @@ body {
     border-bottom: 0.35em solid #795548;
     /* margin-top: 0rem; */
   }
-  
+  #desktop-logo {
+    display: none;
+  }
+  #recentlyDesktop {
+    display: none;
+  }
+  #recentlyMobile {
+    display: inline;
+  }
+  .signinBox {
+    display: none;
+  }
+  #imgSlide {
+    display: none;
+  }
+  .highligth{
+    margin-top: 100px;
+  }
+  .showArea{
+    margin-top: 58px;
+  }
+  .showPost{
+    margin-top: 90px;
+  }
   /* #carouselExampleControls{
     margin-top: 25%;
   } */
@@ -372,20 +457,6 @@ body {
   .mobiletab {
     display: inline;
   }
-  #cattab {
-    margin-top: 1em;
-    padding: 1em;
-    background-color: #ffa726;
-    border-radius: 1em;
-    color: #795548;
-  }
-  #cattab:hover {
-    background-color: #fcc26b;
-  }
-  #cattab a{
-    text-decoration: none;
-    color: #795548;
-  }
   #dogtab {
     margin-top: 1em;
     padding: 1em;
@@ -396,7 +467,7 @@ body {
   #dogtab:hover {
     background-color: #9e796b;
   }
-  #dogtab a{
+  #dogtab a {
     text-decoration: none;
     color: #ffa726;
   }
@@ -411,7 +482,7 @@ body {
   #foundationtab:hover {
     background-color: #fcc26b;
   }
-  #foundationtab a{
+  #foundationtab a {
     text-decoration: none;
     color: #795548;
   }
@@ -476,19 +547,19 @@ body {
   .takeCare img {
     width: 120px;
   }
-  .storycard{
+  .storycard {
     font-size: small;
   }
-  .storycard img{
+  .storycard img {
     width: 120px;
   }
-  .postDetailHead{
+  .postDetailHead {
     font-size: large;
   }
-  .postDetailHead .btn-danger{
+  .postDetailHead .btn-danger {
     font-size: small;
   }
-  .postDetailList{
+  .postDetailList {
     font-size: medium;
   }
 }

@@ -8,41 +8,121 @@
 
 <body>
     <% data %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>คู่มือการเลี้ยง</h1>
-        <br>
-    </div>
+    <% authen %>
+    <% user %>
 
     <% include partials/navbar %>
     <a id="pageActive" class="nav-item active nav-link" href="#">คู่มือการเลี้ยง</a>
     <% include partials/navbar2 %>
 
-    <div class="searchTab">
-        <form method="POST" action="">
-            <div class="input-group">
-                <input type="text" id="foundationSearch" class="form-control" placeholder="ค้นหา" required>
-                <div class="input-group-append">
-                    <button type="submit" class="btn" style="background-color: #795548"><i class="fas fa-search"
-                            style="color: white;"></i></button>
-                </div>
-            </div>
-
-        </form>
+    <div class="banner">
+        <h1>คู่มือการเลี้ยง</h1>
+        <br>
     </div>
 
-    <div class="container">
+    <div class="showArea">
         <div class="row">
-            <% for(let i = 0; i < data.length ; i++){ %>
-            <div class="col-sm-12 col-md-4">
-                <div class="card w-100 foundationcard">
-                    <div class="card-body">
-                        <p><%= data[i].title %></p>
-                        <a class="btn btn-success" href="/howto/<%= data[i]._id %>">อ่านรายละเอียด</a>
+            <div class="col-12 col-md-8 col-lg-8">
+                <div class="searchTab">
+                    <form method="POST" action="">
+                        <div class="input-group">
+                            <input type="text" id="foundationSearch" class="form-control" placeholder="ค้นหา" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn" style="background-color: #795548"><i
+                                        class="fas fa-search" style="color: white;"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="row">
+                    <% for(let i = 0; i < data.length ; i++){ %>
+                    <div class="col-12">
+                        <div class="card w-100 foundationcard">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h1><%= data[i].title %></h1>
+                                        <% let text = data[i].description;
+                                            let txt = text.substr(0,100); %>
+                                        <p><%= txt %>...</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="img-fluid" src="/image/howto/<%= data[i]._id %>">
+                                    </div>
+                                </div>
+                                <a class="btn btn-success" href="/howto/<%= data[i]._id %>">อ่านรายละเอียด</a>
+                            </div>
+                        </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
-            <% } %>
+
+            <div class="col-md-4 col-lg-4 signinBox" style="margin-top: 1em;">
+                <div>
+                    <% if(authen) { %>
+                    <div class="memberBox">
+                        <div class="row">
+                            <div class="col-12" style="text-align: center">
+                                <img class="img-fluid" src="/image/user/<%= user._id %>"
+                                    style="height: 150px; box-shadow: 0px 4px 8px 0 black;">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto">
+                                <h4>ยินดีต้อนรับ</h4>
+                            </div>
+                            <div class="col-auto">
+                                <h4><%= user.name %></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/user/<%= user.username %>" class="btn btn-primary">โปรไฟล์</a>
+                            </div>
+
+                            <% if(authen) {%>
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% }else{ %>
+                    <div class="memberBox">
+                        <h1>เข้าสู่ระบบ</h1>
+                        <form method="POST" action="/signin">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label>e-mail :</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-9">
+                                    <input type="email" class="form-control" id="username" name="username"
+                                        placeholder="กรุณาใส่ email ที่ลงทะเบียน" required>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 0.5em;">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label>รหัสผ่าน :</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-9">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="กรุณาใส่รหัสผ่าน" required>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 0.5em;">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
+                                    <a href="/signup" class="btn btn-primary">สมัครสมาชิก</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </body>
