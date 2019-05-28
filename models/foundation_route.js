@@ -60,7 +60,7 @@ router.post('/create', authentication.isLoggedIn, upload.upload.single('picture'
     authentication.isAdmin(req, (state) => {
         if (state) {
             foundation.create(foundationData);
-            res.redirect('/signin');
+            res.redirect('/foundation/list');
         } else {
             res.redirect('/signin');
         }
@@ -117,6 +117,23 @@ router.post('/edit/:id', authentication.isLoggedIn, upload.upload.single('pictur
         }
     });
 
+});
+
+router.get('/delete/:id', authentication.isLoggedIn,(req,res)=>{
+    let id = req.params.id;
+
+    authentication.isAdmin(req, (state)=>{
+        if(state){
+            foundation.findByIdAndDelete(id,(err,del)=>{
+                if(err){
+                    console.log(err);
+                }
+                res.redirect('/foundation/list');
+            });
+        }else{
+            res.redirect('/sigin');
+        }
+    });
 });
 
 router.get('/:id', (req, res) => {

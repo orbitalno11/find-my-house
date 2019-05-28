@@ -74,4 +74,16 @@ router.get('/foundation/:id', (req, res) => {
   });
 });
 
+router.get('/howto/:id', (req, res) => {
+  let id = req.params.id;
+
+  db.collection('howtos').findOne({ '_id': ObjectId(id) }, (err, result) => {
+    if (err) return console.log(err)
+
+    // console.log(result);
+    res.contentType('image/jpeg');
+    res.send(result.pic.image.buffer);
+  });
+});
+
 module.exports = router;

@@ -24,7 +24,9 @@ let edit = require('./models/edit_route');
 let remove = require('./models/delete_module');
 let admin = require('./models/admin_route');
 let foundation = require('./models/foundation_route');
-let howto = require('./models/howto_route');
+let howtoroute = require('./models/howto_route');
+let howto = require('./models/howto_schema');
+let foundationSchema = require('./models/foundation_schema');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -51,23 +53,61 @@ app.use('/edit', edit);
 app.use('/delete', remove);
 app.use('/admin', admin);
 app.use('/foundation', foundation);
-app.use('/howto', howto);
+app.use('/howto', howtoroute);
 
 app.get('/', (req, res) => {
-    res.render('home');
-});
-
-app.get('/cat', (req, res) => {
-    post.find({}, null, { sort: { created: -1 } }, (err, data) => {
+    post.find({}, null, { sort: { created: -1 }, limit: 6 }, (err, data) => {
         if (err) {
             console.log(err);
             return res.redirect('/');
         } else {
-            res.render('cat', { data: data });
-            // console.log(req.session);
+            foundationSchema.find({}, null, { sort: { _id: -1 }, limit: 10 }, (err, data2) => {
+                if (err) {
+                    console.log(err);
+                    res.redirect('/');
+                } else {
+                    if (authenticattion.checkLogIn(req, res)) {
+                        User.findOne({ username: req.session.passport.user }, (err, user) => {
+                            if (err) {
+                                console.log(err);
+                                res.redirect('/');
+                            } else {
+                                res.render('home', { postdata: data, howtodata: data2, authen: true, user: user });
+                            }
+                        });
+
+                    } else {
+                        res.render('home', { postdata: data, howtodata: data2, authen: false, user: null });
+                    }
+
+                }
+            });
         }
     });
-    // res.render('cat');
+});
+
+app.get('/cat', (req, res) => {
+
+    post.find({ petType: 'cat' }, null, { sort: { created: -1 } }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        } else {
+            if (authenticattion.checkLogIn(req, res)) {
+                User.findOne({ username: req.session.passport.user }, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/');
+                    } else {
+                        res.render('cat', { data: data, authen: true, user: user });
+                    }
+                });
+
+            } else {
+                res.render('cat', { data: data, authen: false, user: null });
+            }
+        }
+    });
 });
 
 app.get('/dog', (req, res) => {
@@ -172,7 +212,6 @@ app.post('/report/:id', (req, res) => {
     res.redirect('/view/post_' + id);
 
 });
-
 
 app.get('/signout', (req, res) => {
     req.logout();

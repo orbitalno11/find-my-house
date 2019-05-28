@@ -2,17 +2,25 @@
 function openNav() {
   // document.getElementById("mySidenav").style.width = "250px";
   $('#mySidenav').css("width", "250px");
-  mySidenavStatus = 1;
+  mySidenavStatus = true;
 }
 
 /* Set the width of the side navigation to 0 */
 function closeNav() {
   // document.getElementById("mySidenav").style.width = "0";
   $('#mySidenav').css("width", "0");
-  mySidenavStatus = 0;
+  mySidenavStatus = false;
 }
 
-let mySidenavStatus = 0;
+let mySidenavStatus = false;
+
+// function NavManage(){
+//   if(state){
+//     closeNav();
+//   }else{
+//     openNav();
+//   }
+// }
 
 // $(document).on('click',function(){
 //   if(mySidenavStatus === 1){
@@ -90,4 +98,19 @@ function getToday(){
 
 $(document).ready(()=>{
   $('#reportDate').val(getToday());
+});
+
+$(window).scroll(function () {
+  let width = $(window).width();
+  if (width > 990) {
+    if ($(this).scrollTop() > 350) {
+      $('.navbar').addClass('navtran')
+                  .addClass('navbar-light')
+                  .removeClass('navbar-dark');
+    } else {
+      $('.navbar').removeClass('navtran')
+                  .addClass('navbar-dark')
+                  .removeClass('navbar-light');
+    }
+  }
 });

@@ -8,86 +8,186 @@
 
 <body>
     <% data %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>เรื่องแบบแมว</h1>
-        <br>
-    </div>
+    <% authen %>
+    <% user %>
 
     <% include partials/navbar %>
     <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบแมว</a>
     <% include partials/navbar2 %>
 
-    <div class="searchTab">
-        <form method="POST" accept="">
-            <div class="input-group">
-                <input type="text" id="catSearch" class="form-control" placeholder="ค้นหา" required>
-                <div class="input-group-append">
-                    <button type="submit" class="btn" style="background-color: #795548"><i class="fas fa-search"
-                            style="color: white;"></i></button>
-                </div>
-            </div>
-        </form>
-        <a href="/create/cat" class="btn btn-success" style="margin-top: 1em;">ตั้งโพสต์</a>
+    <div class="banner">
+        <h1>เรื่องแบบแมว</h1>
+        <br>
     </div>
 
-    <div class="container">
+    <div class="showArea">
         <div class="row">
-            <% for(let i = 0; i < data.length ; i++){ %>
-            <div class="col-sm-12 col-lg-6">
-                <div class="card w-100 storycard">
-                    <div class="card-body">
-                        <h4 id="title" class="card-title">[<%= data[i].postType %>]</h4>
-                        <div class="row">
-                            <div class="col-5" style="text-align: center;">
-                                <% let urlpic = '/image/post/'+ data[i]._id; %>
-                                <img id="petPic" class="img-fluid" src=<%= urlpic %>>
+            <div class="col-12 col-md-8 col-lg-8">
+                <div class="searchTab">
+                    <form method="POST" accept="">
+                        <div class="input-group">
+                            <input type="text" id="catSearch" class="form-control" placeholder="ค้นหา" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn" style="background-color: #795548"><i
+                                        class="fas fa-search" style="color: white;"></i></button>
                             </div>
-                            <div class="col-7" style="padding-left: 1em;">
+                        </div>
+                    </form>
+                    <a href="/create/cat" class="btn btn-success" style="margin-top: 1em;">ตั้งโพสต์</a>
+                </div>
+
+                <div class="row">
+                    <% for(let i = 0; i < data.length ; i++){ %>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="card w-100 storycard">
+                            <div class="card-body">
+                                <h4 id="title" class="card-title">[<%= data[i].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-5">
-                                        <label>ลักษณะ</label>
+                                    <div class="col-5" style="text-align: center;">
+                                        <% let urlpic = '/image/post/'+ data[i]._id; %>
+                                        <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                                     </div>
-                                    <div class="col-7">
-                                        <label id="identity"><%= data[i].identity %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สายพันธุ์</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="species"><%= data[i].species %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สถานะน้อง</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="petStatus"><%= data[i].petStatus %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สถานะโพสต์</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="petStatus"><%= data[i].postStatus %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <% let url = 'view/post_'+data[i]._id %>
-                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                    <div class="col-7" style="padding-left: 1em;">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>ลักษณะ</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="identity"><%= data[i].identity %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สายพันธุ์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="species"><%= data[i].species %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะน้อง</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= data[i].petStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะโพสต์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= data[i].postStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <% let url = 'view/post_'+data[i]._id %>
+                                                <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
-            <% } %>
+
+            <div class="col-md-4 col-lg-4 signinBox" style="margin-top: 1em;">
+                <div>
+                    <% if(authen) { %>
+                    <div class="memberBox">
+                        <div class="row">
+                            <div class="col-12" style="text-align: center">
+                                <img class="img-fluid" src="/image/user/<%= user._id %>"
+                                    style="height: 150px; box-shadow: 0px 4px 8px 0 black;">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto">
+                                <h4>ยินดีต้อนรับ</h4>
+                            </div>
+                            <div class="col-auto">
+                                <h4><%= user.name %></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/user/<%= user.username %>" class="btn btn-primary">โปรไฟล์</a>
+                            </div>
+
+                            <% if(authen) {%>
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                            </div>
+                            <% } %>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-12">
+                                <h4>โพสต์ล่าสุดของคุณ</h4>
+                            </div>
+                            <div class="row">
+                                <% let c = 0;
+                            for(let i = 0; i < data.length; i++){
+                                if(data[i].owner === user.username){ %>
+                                <div class="col-12">
+                                    <div class="cattab">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img src="/image/post/<%= data[i]._id %>" style="width: 100px;">
+                                            </div>
+                                            <div class="col-4">
+                                                <label>สถานะโพสต์</label>
+                                                <label><%= data[i].postStatus %></label>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="/view/post_<%= data[i]._id %>"
+                                                    class="btn btn-outline-light">รายละเอียด</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }
+                            } %>
+                            </div>
+                        </div>
+                    </div>
+                    <% }else{ %>
+                    <div class="memberBox">
+                        <h1>เข้าสู่ระบบ</h1>
+                        <form method="POST" action="/signin">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label>e-mail :</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-9">
+                                    <input type="email" class="form-control" id="username" name="username"
+                                        placeholder="กรุณาใส่ email ที่ลงทะเบียน" required>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 0.5em;">
+                                <div class="col-sm-12 col-md-3 col-lg-3">
+                                    <label>รหัสผ่าน :</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9 col-lg-9">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="กรุณาใส่รหัสผ่าน" required>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 0.5em;">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
+                                    <a href="/signup" class="btn btn-primary">สมัครสมาชิก</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 
