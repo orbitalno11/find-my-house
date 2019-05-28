@@ -4,6 +4,7 @@ const router = express.Router();
 
 let post = require('./post_schema');
 let authentication = require('./authentication_module');
+let User = require('./user_schema');
 
 router.use(express.static(path.resolve('./public')));
 
@@ -53,8 +54,15 @@ router.get('/user_post_:username', authentication.isLoggedIn, (req, res) => {
                 console.log(err);
                 return res.redirect('/user/' + val);
             } else {
+                User.findOne({ username: val }, (err, udata) => {
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/user/' + val);
+                    } else {
+                        res.render('postHistory', { postdata: data, userdata: udata , authen: true});
+                    }
+                });
                 // console.log(data);
-                res.render('postHistory', { postdata: data });
             }
         });
     } else {

@@ -6,10 +6,10 @@ const passport = require('passport');
 // const passportLocalMongoose = require('passport-local-mongoose');
 const path = require('path');
 const portNumber = process.env.PORT || 9000;
-// const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
-// mongoose.connect(connectString);
-const mongoURI = 'mongodb://localhost/FindMyHouse2';
-mongoose.connect(mongoURI);
+const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+mongoose.connect(connectString);
+// const mongoURI = 'mongodb://localhost/FindMyHouse2';
+// mongoose.connect(mongoURI);
 
 let User = require('./models/user_schema');
 let create = require('./models/create_route');
@@ -111,7 +111,26 @@ app.get('/cat', (req, res) => {
 });
 
 app.get('/dog', (req, res) => {
-    res.render('dog');
+    post.find({ petType: 'dog' }, null, { sort: { created: -1 } }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        } else {
+            if (authenticattion.checkLogIn(req, res)) {
+                User.findOne({ username: req.session.passport.user }, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/');
+                    } else {
+                        res.render('dog', { data: data, authen: true, user: user });
+                    }
+                });
+
+            } else {
+                res.render('dog', { data: data, authen: false, user: null });
+            }
+        }
+    });
 });
 
 app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {

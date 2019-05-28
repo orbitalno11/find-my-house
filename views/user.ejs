@@ -23,13 +23,13 @@
     <% if(userdata.status === 'admin' && authen) { %>
     <% include partials/adminnav %>
     <% } else { %>
-    <div id="spaceUser" style="margin-top: 90px;">
+    <div id="spaceUser" style="margin-top: 500px;">
     </div>
     <% } %>
 
     <div class="showArea" style="margin-top: 1em;">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-12 col-md-12 col-lg-6">
                 <div class="memberBox">
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-6">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-6">
+            <div class="col-12 col-md-12 col-lg-6">
                 <div class="col-12">
                     <h4>โพสต์ล่าสุดของคุณ</h4>
                 </div>
@@ -90,14 +90,36 @@
                     <div class="col-12">
                         <div class="cattab">
                             <div class="row">
-                                <div class="col-4">
-                                    <img src="/image/post/<%= data[i]._id %>" style="width: 100px;">
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <img src="/image/post/<%= data[i]._id %>" class="img-fluid">
                                 </div>
-                                <div class="col-4">
-                                    <label>สถานะโพสต์</label>
-                                    <label><%= data[i].postStatus %></label>
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>สถานะน้อง</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].petStatus %></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>สถานะโพสต์</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].postStatus %></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>โพสต์เมื่อ</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].created.toDateString() %></label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-auto">
                                     <a href="/view/post_<%= data[i]._id %>" class="btn btn-outline-light">รายละเอียด</a>
                                 </div>
                             </div>
