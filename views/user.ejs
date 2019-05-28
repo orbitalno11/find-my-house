@@ -9,72 +9,125 @@
 <body>
     <% userdata %>
     <% authen %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>ยินดีต้อนรับ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
-        <br>
-    </div>
+    <% data %>
 
     <% include partials/navbar %>
     <a id="pageActive" class="nav-item active nav-link" href="#">โปรไฟล์</a>
     <% include partials/navbar2 %>
 
+    <div class="banner">
+        <h1>ยินดีต้อนรับ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
+        <br>
+    </div>
+
     <% if(userdata.status === 'admin' && authen) { %>
-        <% include partials/adminnav %>
+    <% include partials/adminnav %>
+    <% } else { %>
+    <div id="spaceUser" style="margin-top: 500px;">
+    </div>
     <% } %>
 
-    <div class="container" style="margin-top: 1em;">
+    <div class="showArea" style="margin-top: 1em;">
         <div class="row">
-            <div class="col-12 col-md-5 col-lg-4" style="text-align: center;">
-                <% let picurl = '/image/user/'+userdata._id; %>
-                <img id="profilePic" class="img-fluid" src=<%= picurl %>>
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="memberBox">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <% let picurl = '/image/user/'+userdata._id; %>
+                            <img class="img-fluid" src=<%= picurl %>>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="row" style="margin-top: 2em;">
+                                <div class="col-auto">
+                                    <label class="postDetailList">ชื่อ : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="postDetailList">
+                                        <%= userdata.name %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label class="postDetailList">นามสกุล : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="postDetailList"><%= userdata.lname %></label>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label class="postDetailList">e-mail : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="postDetailList"><%= userdata.username %></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-12 btn-group">
+                            <a href="/user/detail_<%= userdata.username %>"
+                                class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a>
+                            <a href="<%= '/view/user_post_'+userdata.username %>"
+                                class="btn btn-warning">ดูประวัติโพสต์</a>
+                            <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-12 col-md-7 col-lg-8" style="margin-top: auto; margin-bottom: auto">
-                <div class="row" style="margin-top: 2em;">
-                    <div class="col-auto">
-                        <label class="postDetailList">ชื่อ : </label>
-                    </div>
-                    <div class="col-auto">
-                        <label class="postDetailList">
-                            <%= userdata.name %>
-                        </label>
-                    </div>
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="col-12">
+                    <h4>โพสต์ล่าสุดของคุณ</h4>
                 </div>
-
                 <div class="row">
-                    <div class="col-auto">
-                        <label class="postDetailList">นามสกุล : </label>
+                    <% let c = 0;
+                        for(let i = 0; i < data.length; i++){
+                            if(data[i].owner === userdata.username){ %>
+                    <div class="col-12">
+                        <div class="cattab">
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-lg-4">
+                                    <img src="/image/post/<%= data[i]._id %>" class="img-fluid">
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>สถานะน้อง</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].petStatus %></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>สถานะโพสต์</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].postStatus %></label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label>โพสต์เมื่อ</label>
+                                        </div>
+                                        <div class="col-12 col-md-auto col-lg-auto">
+                                            <label><%= data[i].created.toDateString() %></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="/view/post_<%= data[i]._id %>" class="btn btn-outline-light">รายละเอียด</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <label class="postDetailList"><%= userdata.lname %></label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-auto">
-                        <label class="postDetailList">e-mail : </label>
-                    </div>
-                    <div class="col-auto">
-                        <label class="postDetailList"><%= userdata.username %></label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <% let moreurl = '/user/detail_'+ userdata.username; %>
-                    <div class="col-4 col-md-auto" style="text-align: center;">
-                        <a href=<%= moreurl %> class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a>
-                    </div>
-
-                    <% if(authen) {%>
-                    <div class="col-4 col-md-auto" style="text-align: center;">
-                        <a href="<%= '/view/user_post_'+userdata.username %>" class="btn btn-warning">ดูประวัติโพสต์</a>
-                    </div>
-
-                    <div class="col-4 col-md-auto" style="text-align: center;">
-                        <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
-                    </div>
-                    <% } %>
+                    <% c++;}
+                            if(c === 6) break;
+                        } %>
                 </div>
             </div>
         </div>

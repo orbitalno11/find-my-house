@@ -5,11 +5,12 @@ const router = express.Router();
 let foundation = require('./foundation_schema');
 let authentication = require('./authentication_module');
 let upload = require('./upload_module');
+let User = require('./user_schema');
 
 router.use(express.static(path.resolve('./public')));
 
 router.get('/', (req, res) => {
-    foundation.find((err, data) => {
+    foundation.find({}, null, { sort: { _id: -1 } }, (err, data) => {
         if (err) {
             console.log(err);
             res.redirect('/');
@@ -19,18 +20,25 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/list', authentication.isLoggedIn, (req,res)=>{
-    authentication.isAdmin(req,(state)=>{
-        if(state){
-            foundation.find({}, null, {sort : {_id: -1}}, (err,data)=>{
-                if(err){
+router.get('/list', authentication.isLoggedIn, (req, res) => {
+    authentication.isAdmin(req, (state) => {
+        if (state) {
+            foundation.find({}, null, { sort: { _id: -1 } }, (err, data) => {
+                if (err) {
                     console.log(err);
                     res.redirect('/signin');
-                }else{
-                    res.render('foundationList',{data: data});
+                } else {
+                    User.findOne({ username: req.session.passport.user }, (err, udata) => {
+                        if (err) {
+                            console.log(err);
+                            res.redirect('/signin');
+                        } else {
+                            res.render('foundationList', { data: data, userdata: udata });
+                        }
+                    });
                 }
             });
-        }else{
+        } else {
             res.redirect('/signin');
         }
     });
@@ -79,7 +87,7 @@ router.get('/edit_:id', authentication.isLoggedIn, (req, res) => {
                     res.render('foundationEdit', { data: data });
                 }
             });
-        }else{
+        } else {
             res.redirect('/signin');
         }
     });
@@ -98,39 +106,39 @@ router.post('/edit/:id', authentication.isLoggedIn, upload.upload.single('pictur
         }
     };
 
-    if(imgfile != false){
+    if (imgfile != false) {
         foundationData.pic = imgfile;
     }
 
-    authentication.isAdmin(req, (state)=>{
-        if(state){
-            foundation.findByIdAndUpdate(id, foundationData, (err, update)=>{
-                if(err){
+    authentication.isAdmin(req, (state) => {
+        if (state) {
+            foundation.findByIdAndUpdate(id, foundationData, (err, update) => {
+                if (err) {
                     console.log(err);
                     res.redirect('/signin');
-                }else{
-                    res.redirect('/foundation/'+id);
+                } else {
+                    res.redirect('/foundation/' + id);
                 }
             });
-        }else{
+        } else {
             res.redirect('/signin');
         }
     });
 
 });
 
-router.get('/delete/:id', authentication.isLoggedIn,(req,res)=>{
+router.get('/delete/:id', authentication.isLoggedIn, (req, res) => {
     let id = req.params.id;
 
-    authentication.isAdmin(req, (state)=>{
-        if(state){
-            foundation.findByIdAndDelete(id,(err,del)=>{
-                if(err){
+    authentication.isAdmin(req, (state) => {
+        if (state) {
+            foundation.findByIdAndDelete(id, (err, del) => {
+                if (err) {
                     console.log(err);
                 }
                 res.redirect('/foundation/list');
             });
-        }else{
+        } else {
             res.redirect('/sigin');
         }
     });

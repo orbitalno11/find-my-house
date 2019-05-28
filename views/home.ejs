@@ -62,25 +62,31 @@
                             <div class="carousel-item active">
                                 <div class="row">
                                     <% for(let i = 0; i < limit1; i++){ %>
-                                    <div class="col-12 col-lg-4">
-                                        <div class="card w-100 foundationcard">
-                                            <img class="card-img-top" style="height: 200px; width: auto;"
-                                                src="/image/post/<%= postdata[i]._id %>">
-                                            <div class="card-body">
-                                                <h5>[<%= postdata[i].postType %>]</h5>
-                                                <div class="row">
-                                                    <div class="col-auto">
-                                                        <h6>สถานะน้อง</h6>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <h6><%= postdata[i].petStatus %></hl>
-                                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-4">
+                                        <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center;">
+                                                    <img class="img-fluid" style="height: 200px; width: 200px;"
+                                                        src="/image/post/<%= postdata[i]._id %>">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12" style="text-align: center">
-                                                        <a href="/view/post_<%= postdata[i]._id %>"
-                                                            class="btn takeCareBTN">ดูข้อมูล</a>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="margin-top: 1em;">
+                                                    <h5>[<%= postdata[i].postType %>]</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <h6>สถานะน้อง</h6>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6><%= postdata[i].petStatus %></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center">
+                                                    <a href="/view/post_<%= postdata[i]._id %>"
+                                                        class="btn takeCareBTN">ดูข้อมูล</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,25 +99,31 @@
                             <div class="carousel-item">
                                 <div class="row">
                                     <% for(let i = 3; i < limit2; i++){ %>
-                                    <div class="col-12 col-lg-4">
-                                        <div class="card w-100 foundationcard">
-                                            <img class="card-img-top" style="height: 200px; width: auto;"
-                                                src="/image/post/<%= postdata[i]._id %>">
-                                            <div class="card-body">
-                                                <h5>[<%= postdata[i].postType %>]</h5>
-                                                <div class="row">
-                                                    <div class="col-auto">
-                                                        <h6>สถานะน้อง</h6>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <h6><%= postdata[i].petStatus %></h6>
-                                                    </div>
+                                    <div class="col-12 col-md-12 col-lg-4">
+                                        <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center;">
+                                                    <img class="img-fluid" style="height: 200px; width: 200px;"
+                                                        src="/image/post/<%= postdata[i]._id %>">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12" style="text-align: center">
-                                                        <a href="/view/post_<%= postdata[i]._id %>"
-                                                            class="btn takeCareBTN">ดูข้อมูล</a>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="margin-top: 1em;">
+                                                    <h5>[<%= postdata[i].postType %>]</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <h6>สถานะน้อง</h6>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6><%= postdata[i].petStatus %></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center">
+                                                    <a href="/view/post_<%= postdata[i]._id %>"
+                                                        class="btn takeCareBTN">ดูข้อมูล</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,24 +162,30 @@
                             <div class="carousel-item active">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="card w-100 foundationcard">
-                                            <img class="card-img-top" style="height: 200px; width: auto;"
-                                                src="/image/post/<%= postdata[0]._id %>">
-                                            <div class="card-body">
-                                                <h5>[<%= postdata[0].postType %>]</h5>
-                                                <div class="row">
-                                                    <div class="col-auto">
-                                                        <h6>สถานะน้อง</h6>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <h6><%= postdata[0].petStatus %></h6>
-                                                    </div>
+                                        <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center;">
+                                                    <img class="img-fluid" style="height: 200px; width: 200px;"
+                                                        src="/image/post/<%= postdata[0]._id %>">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12" style="text-align: center">
-                                                        <a href="/view/post_<%= postdata[0]._id %>"
-                                                            class="btn takeCareBTN">ดูข้อมูล</a>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="margin-top: 1em;">
+                                                    <h5>[<%= postdata[0].postType %>]</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <h6>สถานะน้อง</h6>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6><%= postdata[0].petStatus %></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center">
+                                                    <a href="/view/post_<%= postdata[0]._id %>"
+                                                        class="btn takeCareBTN">ดูข้อมูล</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -179,24 +197,30 @@
                             <div class="carousel-item">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="card w-100 foundationcard">
-                                            <img class="card-img-top" style="height: 200px; width: auto;"
-                                                src="/image/post/<%= postdata[i]._id %>">
-                                            <div class="card-body">
-                                                <h5>[<%= postdata[i].postType %>]</h5>
-                                                <div class="row">
-                                                    <div class="col-auto">
-                                                        <h6>สถานะน้อง</h6>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <h6><%= postdata[i].petStatus %></h6>
-                                                    </div>
+                                        <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center;">
+                                                    <img class="img-fluid" style="height: 200px; width: 200px;"
+                                                        src="/image/post/<%= postdata[i]._id %>">
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-12" style="text-align: center">
-                                                        <a href="/view/post_<%= postdata[i]._id %>"
-                                                            class="btn takeCareBTN">ดูข้อมูล</a>
-                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="margin-top: 1em;">
+                                                    <h5>[<%= postdata[i].postType %>]</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    <h6>สถานะน้อง</h6>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <h6><%= postdata[i].petStatus %></h6>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12" style="text-align: center">
+                                                    <a href="/view/post_<%= postdata[i]._id %>"
+                                                        class="btn takeCareBTN">ดูข้อมูล</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -315,17 +339,23 @@
                         <div class="carousel-item active">
                             <div class="row">
                                 <% for(let i = 0; i < limit1; i++){ %>
-                                <div class="col-12 col-lg-3">
-                                    <div class="card w-100 foundationcard">
-                                        <img class="card-img-top" style="height: 200px; width: auto;"
-                                            src="/image/foundation/<%= howtodata[i]._id %>">
-                                        <div class="card-body">
-                                            <h5><%= howtodata[i].name %></h5>
-                                            <div class="row">
-                                                <div class="col-12" style="text-align: center">
-                                                    <a href="/foundation/<%= howtodata[i]._id %>"
-                                                        class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
-                                                </div>
+                                <div class="col-12 col-md-12 col-lg-3">
+                                    <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center;">
+                                                <img class="img-fluid" style="height: 150px; width: 200px;"
+                                                    src="/image/foundation/<%= howtodata[i]._id %>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-top: 1em;">
+                                                <h5><%= howtodata[i].name %></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center">
+                                                <a href="/foundation/<%= howtodata[i]._id %>"
+                                                    class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
                                             </div>
                                         </div>
                                     </div>
@@ -338,17 +368,23 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <% for(let i = 4; i < limit2; i++){ %>
-                                <div class="col-12 col-lg-3">
-                                    <div class="card w-100 foundationcard">
-                                        <img class="card-img-top" style="height: 200px; width: auto;"
-                                            src="/image/foundation/<%= howtodata[i]._id %>">
-                                        <div class="card-body">
-                                            <h5><%= howtodata[i].name %></h5>
-                                            <div class="row">
-                                                <div class="col-12" style="text-align: center">
-                                                    <a href="/foundation/<%= howtodata[i]._id %>"
-                                                        class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
-                                                </div>
+                                <div class="col-12 col-md-12 col-lg-3">
+                                    <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center;">
+                                                <img class="img-fluid" style="height: 150px; width: 200px;"
+                                                    src="/image/foundation/<%= howtodata[i]._id %>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-top: 1em;">
+                                                <h5><%= howtodata[i].name %></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center">
+                                                <a href="/foundation/<%= howtodata[i]._id %>"
+                                                    class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
                                             </div>
                                         </div>
                                     </div>
@@ -378,16 +414,22 @@
                         <div class="carousel-item active">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="card w-100 foundationcard">
-                                        <img class="card-img-top" style="height: 200px; width: auto;"
-                                            src="/image/foundation/<%= howtodata[0]._id %>">
-                                        <div class="card-body">
-                                            <h5><%= howtodata[0].name %></h5>
-                                            <div class="row">
-                                                <div class="col-12" style="text-align: center">
-                                                    <a href="/foundation/<%= howtodata[0]._id %>"
-                                                        class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
-                                                </div>
+                                    <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center;">
+                                                <img class="img-fluid" style="height: 150px; width: 200px;"
+                                                    src="/image/foundation/<%= howtodata[0]._id %>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-top: 1em;">
+                                                <h5><%= howtodata[0].name %></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center">
+                                                <a href="/foundation/<%= howtodata[0]._id %>"
+                                                    class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
                                             </div>
                                         </div>
                                     </div>
@@ -399,20 +441,27 @@
                         <div class="carousel-item">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="card w-100 foundationcard">
-                                        <img class="card-img-top" style="height: 200px; width: auto;"
-                                            src="/image/foundation/<%= howtodata[i]._id %>">
-                                        <div class="card-body">
-                                            <h5><%= howtodata[i].name %></h5>
-                                            <div class="row">
-                                                <div class="col-12" style="text-align: center">
-                                                    <a href="/foundation/<%= howtodata[i]._id %>"
-                                                        class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
-                                                </div>
+                                    <div class="foundationcard" style="padding: 1em; border-radius: 0.5em;">
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center;">
+                                                <img class="img-fluid" style="height: 150px; width: 200px;"
+                                                    src="/image/foundation/<%= howtodata[i]._id %>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="margin-top: 1em;">
+                                                <h5><%= howtodata[i].name %></h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12" style="text-align: center">
+                                                <a href="/foundation/<%= howtodata[i]._id %>"
+                                                    class="btn btn-outline-primary btn-light">ดูข้อมูล</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <% } %>
@@ -429,7 +478,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

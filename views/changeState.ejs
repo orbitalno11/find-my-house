@@ -8,8 +8,8 @@
 
 <body>
     <% postdata %>
+    <% userdata %>
     <div class="banner">
-        <img src="img/cat.png">
         <h1>ระบบบริหารและจัดการข้อมูล</h1>
         <br>
     </div>
@@ -20,64 +20,110 @@
 
     <% include partials/adminnav %>
 
-    <div class="searchTab">
-        <form method="POST" accept="">
-            <div class="input-group">
-                <input type="text" id="catSearch" class="form-control" placeholder="ค้นหา" required>
-                <div class="input-group-append">
-                    <button type="submit" class="btn" style="background-color: #795548"><i class="fas fa-search"
-                            style="color: white;"></i></button>
+    <div class="adminShowArea">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 signinBox" style="margin-top: 1.5em;">
+                <div class="memberBox">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <% let picurl = '/image/user/'+userdata._id; %>
+                            <img class="img-fluid" src=<%= picurl %>>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <div class="row" style="margin-top: 2em;">
+                                <div class="col-auto">
+                                    <label class="postDetailList">ชื่อ : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="postDetailList">
+                                        <%= userdata.name %>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <label class="postDetailList">นามสกุล : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <label class="postDetailList"><%= userdata.lname %></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-12 btn-group">
+                            <a href="/user/<%= userdata.username %>" class="btn btn-primary">กลับหน้าโปรไฟล์</a>
+                            <a href="<%= '/view/user_post_'+userdata.username %>"
+                                class="btn btn-warning">ดูประวัติโพสต์</a>
+                            <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </form>
-    </div>
+            <div class="col-12 col-md-12 col-lg-8">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="searchTab">
+                            <form method="POST" accept="">
+                                <div class="input-group">
+                                    <input type="text" id="catSearch" class="form-control" placeholder="ค้นหา" required>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn" style="background-color: #795548"><i
+                                                class="fas fa-search" style="color: white;"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="container">
-        <div class="row">
-            <% for(let i = postdata.length -1; i >= 0 ; i--){ %>
-            <div class="col-sm-12 col-lg-6">
-                <div class="card w-100 storycard">
-                    <div class="card-body">
-                        <h4 id="title" class="card-title">[<%= postdata[i].postType %>]</h4>
-                        <div class="row">
-                            <div class="col-5" style="text-align: center;">
-                                <% picurl = '/image/post/'+postdata[i]._id; %>
-                                <img id="petPic" src=<%= picurl %> style="height: 150px; width: 100%">
-                            </div>
-                            <div class="col-7" style="padding-left: 1em;">
+                <div class="row">
+                    <% for(let i = postdata.length -1; i >= 0 ; i--){ %>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="card w-100 storycard">
+                            <div class="card-body">
+                                <h4 id="title" class="card-title">[<%= postdata[i].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-5">
-                                        <label>ลักษณะ</label>
+                                    <div class="col-5" style="text-align: center;">
+                                        <img id="petPic" class="img-fluid" src="<%= '/image/post/'+postdata[i]._id %>">
                                     </div>
-                                    <div class="col-7">
-                                        <label id="identity"><%= postdata[i].identity %></label>
+                                    <div class="col-7" style="padding-left: 1em;">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>ลักษณะ</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="identity"><%= postdata[i].identity %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สายพันธุ์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="species"><%= postdata[i].species %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะน้อง</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= postdata[i].petStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะโพสต์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= postdata[i].postStatus %></label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สายพันธุ์</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="species"><%= postdata[i].species %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สถานะน้อง</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="petStatus"><%= postdata[i].petStatus %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-5">
-                                        <label>สถานะโพสต์</label>
-                                    </div>
-                                    <div class="col-7">
-                                        <label id="petStatus"><%= postdata[i].postStatus %></label>
-                                    </div>
-                                </div>
-                                <div class="row">
+                                <div class="row" style="margin-top: 1em;">
                                     <div class="col-12 btn-group">
                                         <a href=<%= '/delete/post/admin/'+postdata[i]._id %>
                                             class="btn btn-outline-danger btn-dark">ลบ</a>
@@ -88,10 +134,12 @@
                             </div>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
-            <% } %>
+
         </div>
+    </div>
 </body>
 
 </html>

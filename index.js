@@ -111,7 +111,26 @@ app.get('/cat', (req, res) => {
 });
 
 app.get('/dog', (req, res) => {
-    res.render('dog');
+    post.find({ petType: 'dog' }, null, { sort: { created: -1 } }, (err, data) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/');
+        } else {
+            if (authenticattion.checkLogIn(req, res)) {
+                User.findOne({ username: req.session.passport.user }, (err, user) => {
+                    if (err) {
+                        console.log(err);
+                        res.redirect('/');
+                    } else {
+                        res.render('dog', { data: data, authen: true, user: user });
+                    }
+                });
+
+            } else {
+                res.render('dog', { data: data, authen: false, user: null });
+            }
+        }
+    });
 });
 
 app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {

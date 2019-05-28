@@ -8,23 +8,23 @@
 
 <body>
     <% postdata %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>แจ้งโพสต์ผิดกฎ</h1>
-        <br>
-    </div>
 
     <% include partials/navbar %>
     <a id="pageActive" class="nav-item active nav-link" href="#">แจ้งโพสต์ผิดกฎ</a>
     <% include partials/navbar2 %>
 
-    <div class="container">
+    <div class="banner">
+        <h1>แจ้งโพสต์ผิดกฎ</h1>
+        <br>
+    </div>
+
+    <div id="reportForm" class="showPost">
 
         <div class="row postDetailHead">
-            <div class="col-5 col-md-auto col-lg-auto">
+            <div class="col-auto col-md-auto col-lg-auto">
                 <label>ประเภทโพสต์</label>
             </div>
-            <div class="col-3 col-md-auto col-lg-auto">
+            <div class="col-auto col-md-auto col-lg-auto">
                 <label id="postType"><%= postdata.postType %></label>
             </div>
             <!-- <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
@@ -39,10 +39,10 @@
 
             <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
                 <div class="row no-gutters" style="margin-top: 1em;">
-                    <div class="col-4 col-md-2 col-lg-3">
+                    <div class="col-12 col-md-2 col-lg-3">
                         <label class="postDetailList">ลักษณะเด่น</label>
                     </div>
-                    <div class="col-8 col-md-10 col-lg-9">
+                    <div class="col-12 col-md-10 col-lg-9">
                         <textarea id="identity" class="form-control" rows="1"
                             readonly><%= postdata.identity %></textarea>
                     </div>
@@ -58,18 +58,18 @@
                     </div>
                 </div>
                 <div class="row" style="margin-top: 1em;">
-                    <div class="col-3 col-md-2 col-lg-auto">
+                    <div class="col-12 col-md-2 col-lg-auto">
                         <label class="postDetailList">สายพันธุ์</label>
                     </div>
-                    <div class="col-9 col-md-10 col-lg-auto">
+                    <div class="col-12 col-md-10 col-lg-auto">
                         <input id="moreDetail" class="form-control" readonly value=<%= postdata.species %>>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 1em;">
-                    <div class="col-4 col-md-3 col-lg-auto">
+                    <div class="col-12 col-md-3 col-lg-auto">
                         <label class="postDetailList">สถานะปัจจุบัน</label>
                     </div>
-                    <div class="col-8 col-md-9 col-lg-auto">
+                    <div class="col-12 col-md-9 col-lg-auto">
                         <input id="petStatus" class="form-control" readonly value=<%= postdata.petType %>>
                     </div>
                 </div>
@@ -85,30 +85,30 @@
         <form method="POST" action="/report/<%= postdata._id %>">
 
         <div class="row" style="margin-top: 1em;">
-            <div class="col-3 col-md-2 col-lg-auto">
+            <div class="col-12 col-md-2 col-lg-2">
                 <label class="postDetailList">ชื่อ-นามสกุล</label>
             </div>
-            <div class="col-9 col-md-10 col-lg-10">
+            <div class="col-12 col-md-10 col-lg-6">
                 <input id="reporter" name="reporter" type="text" class="form-control" required
                     placeholder="นายน้องแมว รักน้องหมา">
             </div>
         </div>
 
         <div class="row" style="margin-top: 1em;">
-            <div class="col-3 col-md-2 col-lg-auto">
+            <div class="col-12 col-md-2 col-lg-2">
                 <label class="postDetailList">e-mail</label>
             </div>
-            <div class="col-9 col-md-10 col-lg-10">
+            <div class="col-12 col-md-10 col-lg-6">
                 <input id="reporterEmail" name="reporterEmail" type="email" class="form-control" required
                     placeholder="report@findMyHouse.example">
             </div>
         </div>
 
         <div class="row" style="margin-top: 1em;">
-            <div class="col-3 col-md-2 col-lg-auto">
+            <div class="col-12 col-md-2 col-lg-2">
                 <label class="postDetailList">เบอร์โทรศัพท์</label>
             </div>
-            <div class="col-9 col-md-10 col-lg-10">
+            <div class="col-12 col-md-10 col-lg-6">
                 <input id="reporterPhone" name="reporterPhone" type="text" class="form-control" required
                     placeholder="098-765-4321">
             </div>

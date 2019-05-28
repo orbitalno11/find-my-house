@@ -40,7 +40,14 @@ router.get('/list', authentication.isLoggedIn, (req, res) => {
                     console.log(err);
                     res.redirect('/signin');
                 } else {
-                    res.render('howtoList', { data: data });
+                    User.findOne({ username: req.session.passport.user }, (err, udata) => {
+                        if (err) {
+                            console.log(err);
+                            res.redirect('/signin');
+                        } else {
+                            res.render('howtoList', { data: data, userdata: udata });
+                        }
+                    });
                 }
             });
         } else {
@@ -100,7 +107,7 @@ router.post('/edit/:id', authentication.isLoggedIn, uploadpic.upload.single('pic
     let imgfile = uploadpic.uploadIMG(req, res);
 
     let howtoData = {
-        name: req.body.title,
+        title: req.body.title,
         description: req.body.description,
     };
 

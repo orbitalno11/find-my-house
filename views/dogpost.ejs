@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>เรื่องแบบแมว</title>
+    <title>เรื่องหมา</title>
     <% include partials/header %>
 </head>
 
@@ -10,19 +10,19 @@
     <% userdata %>
     <% postdata %>
     <div class="banner">
-        <h1>เรื่องแบบแมว</h1>
+        <h1>เรื่องแบบหมา</h1>
         <br>
     </div>
 
     <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบแมว</a>
+    <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบหมา</a>
     <% include partials/navbar2 %>
 
     <div class="showPost">
         <div class="row">
             <div class="col-12 col-md-12 col-lg-8">
-                <form id="createPost" class="makePost" method="POST" action="/create/cat" enctype="multipart/form-data">
-                    <input type="text" id="petType" name="petType" value="cat" hidden>
+                <form id="createPost" class="makePost" method="POST" action="/create/dog" enctype="multipart/form-data">
+                    <input type="text" id="petType" name="petType" value="dog" hidden>
                     <input type="text" id="owner" name="owner" value=<%= userdata.username %> hidden>
                     <input type="text" id="postStatus" name="postStatus" value="ปกติ" hidden>
                     <div class="row">
@@ -39,7 +39,7 @@
                                     </div>
                                     <div class="col-12 col-lg-auto">
                                         <label
-                                            class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
+                                            class="someDetail form-check-label">&nbsp;(โพสต์หาหมาตามลักษณะที่ต้องการ)</label>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-12 col-lg-auto">
                                         <label
-                                            class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
+                                            class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับหมา)</label>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-lg-4">
-                            <div id="uploadcatpic">
+                            <div id="uploaddogpic">
                                 <label class="file-upload" style="text-align: center">
                                     <input type="file" id="picture" name="picture" required hidden>
                                     <img id="img-upload" src="img/cat_post.jpg" style="width: 55%">
@@ -146,7 +146,7 @@
                                 for(let i = 0; i < postdata.length; i++){
                                     if(postdata[i].owner === userdata.username){ %>
                                 <div class="col-12">
-                                    <div class="cattab">
+                                    <div class="dogtab">
                                         <div class="row">
                                             <div class="col-4">
                                                 <img src="/image/post/<%= postdata[i]._id %>" style="width: 100px;">

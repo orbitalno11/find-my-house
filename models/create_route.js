@@ -6,13 +6,38 @@ const paths = require('path');
 
 let post = require('./post_schema');
 let uploadpic = require('./upload_module');
+let UserData = require('./user_schema'); 
 
 router.use(express.static(paths.resolve('./public')));
 
 express().use(BodyParser.urlencoded({extended: true}));
 
 router.get('/cat', authentication.isLoggedIn, (req,res)=>{
-    res.render('catpost',{user: req.session.passport.user});
+    // res.render('catpost',{user: req.session.passport.user});
+
+    let user = req.session.passport.user;
+    // console.log(user);
+
+    UserData.findOne({username: user},(err,udata)=>{
+        // console.log(udata);
+        if(err){
+            console.log(err);
+            res.redirect('/cat');
+        }else{
+            post.find({petType: 'cat'},null,{sort: {created: -1}},(err,postdata)=>{
+                if(err){
+                    console.log(err);
+                    res.redirect('/cat');
+                }else{
+                    res.render('catpost',{userdata: udata, postdata: postdata});
+                }
+            })
+
+        }
+    });
+
+    // res.redirect('/');
+
     // console.log(req.session.passport.user);
     // console.log(req.session.)
 });
@@ -39,7 +64,54 @@ router.post('/cat',authentication.isLoggedIn, uploadpic.upload.single('picture')
 });
 
 router.get('/dog', authentication.isLoggedIn, (req,res)=>{
-    res.render('dogpost');
+    // res.render('catpost',{user: req.session.passport.user});
+
+    let user = req.session.passport.user;
+    // console.log(user);
+
+    UserData.findOne({username: user},(err,udata)=>{
+        // console.log(udata);
+        if(err){
+            console.log(err);
+            res.redirect('/dog');
+        }else{
+            post.find({petType: 'dog'},null,{sort: {created: -1}},(err,postdata)=>{
+                if(err){
+                    console.log(err);
+                    res.redirect('/dog');
+                }else{
+                    res.render('dogpost',{userdata: udata, postdata: postdata});
+                }
+            })
+
+        }
+    });
+
+    // res.redirect('/');
+
+    // console.log(req.session.passport.user);
+    // console.log(req.session.)
+});
+
+router.post('/dog',authentication.isLoggedIn, uploadpic.upload.single('picture'), (req,res)=>{
+   
+    let imgfile = uploadpic.uploadIMG(req,res);
+
+    let postData = {
+        petType: 'dog',
+        postType: req.body.postType,
+        identity: req.body.identity,
+        moreDetail: req.body.moreDetail,
+        species: req.body.species,
+        petStatus: req.body.petStatus,
+        moreContact: req.body.moreContact,
+        owner: req.body.owner,
+        pic: imgfile,
+        postStatus : req.body.postStatus
+    };
+    
+    post.create(postData);
+    res.redirect('/dog');
 });
 
 module.exports = router;
