@@ -9,8 +9,13 @@
 <body>
     <% postdata %>
     <% userdata %>
+
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">ดูข้อมูลขอรับเลี้ยง</a>
+    <% include partials/navbar2 %>
+
     <div class="banner">
-        <img src="img/cat.png">
         <% if (postdata.petType === 'cat') {%>
         <h1>เรื่องแบบแมว</h1>
         <% }else{%>
@@ -19,11 +24,7 @@
         <br>
     </div>
 
-    <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">ดูข้อมูลขอรับเลี้ยง</a>
-    <% include partials/navbar2 %>
-
-    <div class="container">
+    <div class="container showArea">
         <div class="row">
             <div class="col-sm-12 col-lg-6">
                 <h1 style="margin-top: 1em;">รายละเอียดขอรับเลี้ยง</h1>
@@ -33,7 +34,7 @@
                         <div class="row">
                             <div class="col-5" style="text-align: center;">
                                 <% let urlpic = '/image/post/'+ postdata._id; %>
-                                <img id="petPic" src=<%= urlpic %>>
+                                <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                             </div>
                             <div class="col-7" style="padding-left: 1em;">
                                 <div class="row">
@@ -80,8 +81,7 @@
 
             <div class="col-sm-12 col-lg-6">
                 <div>
-                    <h1 style="margin-top: 1em;">ข้อมูลผู้ตั้งโพสต์&nbsp;<label class="someDetail">post ID
-                            :&nbsp;</label><label class="someDetail" id="postID">12345</label></h1>
+                    <h1 style="margin-top: 1em;">ข้อมูลผู้ตั้งโพสต์</h1>
                 </div>
 
                 <div class="card ownerPost">
@@ -94,73 +94,69 @@
                                 }else{
                                     userpic = '/image/user/'+ userdata._id;
                                 } %>
-                                <img id="owerPic" src=<%= userpic %>>
+                                <img id="owerPic" class="img-fluid" src=<%= userpic %>>
                             </div>
 
                             <div class="col-7">
                                 <div class="row no-gutters">
-                                    <div class="col-3">
+                                    <div class="col-auto">
                                         <label>
                                             ชื่อ
                                         </label>
                                     </div>
-                                    <div class="col-9" style="padding-left: 1.5em;">
+                                    <div class="col-auto" style="padding-left: 1.5em;">
                                         <label id="ownerName"><%= userdata.name %></label>
                                     </div>
                                 </div>
 
                                 <div class="row no-gutters">
-                                    <div class="col-3">
+                                    <div class="col-auto">
                                         <label>
                                             นามสกุล
                                         </label>
                                     </div>
-                                    <div class="col-9" style="padding-left: 1.5em;">
+                                    <div class="col-auto" style="padding-left: 1.5em;">
                                         <label id="ownerLname"><%= userdata.lname %></label>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <label>
-                                            <h3>การติดต่อ</h3>
-                                        </label>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-3">
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12">
+                                <label>
+                                    <h3>การติดต่อ</h3>
+                                </label>
+                            </div>
+                            <div class="col-auto">
                                 <label>
                                     เบอร์โทร.
                                 </label>
                             </div>
-                            <div class="col-9">
+                            <div class="col-auto">
                                 <label id="telNumber"><%= userdata.phone %></label>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-auto">
                                 <label>
                                     e-mail
                                 </label>
                             </div>
-                            <div class="col-9">
+                            <div class="col-auto">
                                 <label id="email"><%= userdata.username %></label>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-auto">
                                 <label>
-                                    facebook
+                                    จังหวัด
                                 </label>
                             </div>
-                            <div class="col-9">
-                                <label id="facebook">facebook.com/example</label>
+                            <div class="col-auto">
+                                <label id="facebook"><%= userdata.province %></label>
                             </div>
                         </div>
                     </div>

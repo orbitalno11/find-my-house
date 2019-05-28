@@ -137,7 +137,7 @@ router.get('/:id', (req,res)=>{
                     console.log(err);
                     res.redirect('/sigin');
                 }else{
-                    res.render('user',{userdata : data, authen: true, data: post});
+                    res.render('user',{userdata : data, authen: false, data: post});
                 }
             });
             // console.log(data);
