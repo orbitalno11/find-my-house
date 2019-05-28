@@ -10,8 +10,20 @@
     <% data %>
     <% authen %>
     <% user %>
+    <% moredata %>
+
+    <% let randompost = Math.floor(Math.random() * moredata.length); %>
+    <% let randompost2 = Math.floor(Math.random() * moredata.length);
+        while(randompost2 === randompost){
+            randompost2 = Math.floor(Math.random() * moredata.length)
+        }
+    %>
+
+    <% include partials/navbar %>
+    <a id="pageActive" class="nav-item active nav-link" href="#">รายละเอียดโพสต์</a>
+    <% include partials/navbar2 %>
+
     <div class="banner">
-        <img src="img/cat.png">
         <% if (data.petType === 'cat') {%>
         <h1>เรื่องแบบแมว</h1>
         <% }else{%>
@@ -20,102 +32,219 @@
         <br>
     </div>
 
-    <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">รายละเอียดโพสต์</a>
-    <% include partials/navbar2 %>
-
-    <div class="container">
-
-        <div class="row postDetailHead">
-            <div class="col-5 col-md-3 col-lg-2">
-                <label>ประเภทโพสต์</label>
-            </div>
-            <div class="col-3 col-md-6 col-lg-7">
-                <label id="postType"><%= data.postType %></label>
-            </div>
-            <div class="col-4 col-md-3 col-lg-3" style="text-align: right;">
-                <% let report = '/report_'+data._id; %>
-                <% if(data.postStatus != 'ถูกแจ้งผิดกฎ'){ %>
-                <a href=<%= report %> class="btn btn-danger">แจ้งผิดกฏ</a>
-                <% } %>
-                <% if(authen && user === data.owner){ %>
-                <a href="/edit/post_<%= data._id %>" class="btn btn-warning">แก้ไข</a>
-                <% } %>
-            </div>
-        </div>
-
+    <div class="showPost">
         <div class="row">
-            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
-                <% let urlpic = '/image/post/'+ data._id; %>
-                <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
+            <div class="col-12 col-md-8 col-lg-8" style="background-color: #FCF3CF; border-radius: 0.5em;">
+                <div class="row postDetailHead">
+                    <div class="col-auto col-md-3 col-lg-2">
+                        <label>ประเภทโพสต์</label>
+                    </div>
+                    <div class="col-auto col-md-6 col-lg-7">
+                        <label id="postType"><%= data.postType %></label>
+                    </div>
+                    <div class="col-12 col-md-3 col-lg-3" style="text-align: right;">
+                        <% let report = '/report_'+data._id; %>
+                        <% if(data.postStatus != 'ถูกแจ้งผิดกฎ'){ %>
+                        <a href=<%= report %> class="btn btn-danger">แจ้งผิดกฏ</a>
+                        <% } %>
+                        <% if(authen && user === data.owner){ %>
+                        <a href="/edit/post_<%= data._id %>" class="btn btn-warning">แก้ไข</a>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em; text-align: center;">
+                        <% let urlpic = '/image/post/'+ data._id; %>
+                        <img id="petPic" class="petDetailPic" src=<%= urlpic %>>
+                    </div>
+
+                    <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
+                        <div class="row no-gutters" style="margin-top: 1em;">
+                            <div class="col-4 col-md-2 col-lg-3">
+                                <label class="postDetailList">ลักษณะเด่น</label>
+                            </div>
+                            <div class="col-8 col-md-10 col-lg-9">
+                                <textarea id="indentity" class="form-control" rows="1"
+                                    readonly><%= data.identity %></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <label class="postDetailList">ลักษณะโดยละเอียด</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12 col-md-12 col-lg-12">
+                                <textarea rows="5" class="form-control" readonly><%= data.moreDetail %></textarea>
+                            </div>
+                        </div>
+                        <div class="row no-gutters" style="margin-top: 1em;">
+                            <div class="col-3 col-md-2 col-lg-2">
+                                <label class="postDetailList">สายพันธุ์</label>
+                            </div>
+                            <div class="col-9 col-md-10 col-lg-10">
+                                <input id="moreDetail" class="form-control" readonly value=<%= data.species %>>
+                            </div>
+                        </div>
+                        <div class="row no-gutters" style="margin-top: 1em;">
+                            <div class="col-4 col-md-3 col-lg-3">
+                                <label class="postDetailList">สถานะปัจจุบัน</label>
+                            </div>
+                            <div class="col-8 col-md-9 col-lg-9">
+                                <input id="petStatus" class="form-control" readonly value=<%= data.petStatus %>>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-auto">
+                                <label class="postDetailList">สถานะโพสต์</label>
+                            </div>
+                            <div class="col-auto">
+                                <label class="postDetailList"><%= data.postStatus %></label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-auto">
+                                <label class="postDetailList">โพสต์เมื่อ</label>
+                            </div>
+                            <div class="col-auto">
+                                <label class="postDetailList"><%= data.created.toDateString() %></label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1em;">
+                            <div class="col-12" style="text-align: center;">
+                                <% 
+                                    let url;
+                                    if (data.petType === 'cat') {
+                                        url = '/takecare/cat_'+data._id;
+                                    }else{
+                                        url = '/takecare/dog_'+data._id;
+                                    } %>
+                                <a href=<%= url %> class="btn takeCareBTN">สนใจรับเลี้ยง</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-12 col-md-12 col-lg-6" style="margin-top: 1em;">
-                <div class="row no-gutters" style="margin-top: 1em;">
-                    <div class="col-4 col-md-2 col-lg-3">
-                        <label class="postDetailList">ลักษณะเด่น</label>
-                    </div>
-                    <div class="col-8 col-md-10 col-lg-9">
-                        <textarea id="indentity" class="form-control" rows="1" readonly><%= data.identity %></textarea>
+            <div class="col-md-4 col-lg-4">
+                <div style="background-color: #795548; border-radius: 0.5em 0.5em 0em 0em; text-align: center; padding: 0.5em; color:white; margin: 0.5em 0em 0.5em 0em;">
+                    <h4>คุณอาจสนใจ</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card w-100" style="background-color: #F2F3F4">
+                            <div class="card-body">
+                                <h4 id="title" class="card-title">[<%= moredata[randompost].postType %>]</h4>
+                                <div class="row">
+                                    <div class="col-5" style="text-align: center;">
+                                        <img id="petPic" class="img-fluid"
+                                            src=<%= '/image/post/'+ moredata[randompost]._id %>>
+                                    </div>
+                                    <div class="col-7" style="padding-left: 1em;">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>ลักษณะ</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="identity"><%= moredata[randompost].identity %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สายพันธุ์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="species"><%= moredata[randompost].species %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะน้อง</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= moredata[randompost].petStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <label>สถานะโพสต์</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <label id="petStatus"><%= moredata[randompost].postStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <a href=<%= '/view/post_'+moredata[randompost]._id %>
+                                                    class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <label class="postDetailList">ลักษณะโดยละเอียด</label>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-12 col-md-12 col-lg-12">
-                        <textarea rows="5" class="form-control" readonly><%= data.moreDetail %></textarea>
-                    </div>
-                </div>
-                <div class="row no-gutters" style="margin-top: 1em;">
-                    <div class="col-3 col-md-2 col-lg-2">
-                        <label class="postDetailList">สายพันธุ์</label>
-                    </div>
-                    <div class="col-9 col-md-10 col-lg-10">
-                        <input id="moreDetail" class="form-control" readonly value=<%= data.species %>>
-                    </div>
-                </div>
-                <div class="row no-gutters" style="margin-top: 1em;">
-                    <div class="col-4 col-md-3 col-lg-3">
-                        <label class="postDetailList">สถานะปัจจุบัน</label>
-                    </div>
-                    <div class="col-8 col-md-9 col-lg-9">
-                        <input id="petStatus" class="form-control" readonly value=<%= data.petStatus %>>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-auto">
-                        <label class="postDetailList">สถานะโพสต์</label>
-                    </div>
-                    <div class="col-auto">
-                        <label class="postDetailList"><%= data.postStatus %></label>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-auto">
-                        <label class="postDetailList">โพสต์เมื่อ</label>
-                    </div>
-                    <div class="col-auto">
-                        <label class="postDetailList"><%= data.created.toDateString() %></label>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 1em;">
-                    <div class="col-12" style="text-align: center;">
 
-                        <% 
-                            let url;
-                            if (data.petType === 'cat') {
-                                url = '/takecare/cat_'+data._id;
-                            }else{
-                                url = '/takecare/dog_'+data._id;
-                            } %>
-                        <a href=<%= url %> class="btn takeCareBTN">สนใจรับเลี้ยง</a>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12">
+                        <div class="card w-100" style="background-color: #F2F3F4">
+                            <div class="card-body">
+                                <h4 id="title" class="card-title">[<%= moredata[randompost2].postType %>]</h4>
+                                <div class="row">
+                                    <div class="col-4" style="text-align: center;">
+                                        <img id="petPic" class="img-fluid"
+                                            src=<%= '/image/post/'+ moredata[randompost2]._id %>>
+                                    </div>
+                                    <div class="col-8" style="padding-left: 1em;">
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <label>ลักษณะ</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label id="identity"><%= moredata[randompost2].identity %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <label>สายพันธุ์</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label id="species"><%= moredata[randompost2].species %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <label>สถานะน้อง</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label id="petStatus"><%= moredata[randompost2].petStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <label>สถานะโพสต์</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label id="petStatus"><%= moredata[randompost2].postStatus %></label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <a href=<%= '/view/post_'+moredata[randompost2]._id %>
+                                                    class="btn takeCareBTN">อ่านรายละเอียด</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

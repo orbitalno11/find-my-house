@@ -6,6 +6,7 @@ const router = express.Router();
 let User = require('./user_schema');
 let authentication = require('./authentication_module');
 let uploadpic = require('./upload_module');
+let post = require('./post_schema');
 
 router.use(express.static(path.resolve('./public')));
 express().use(BodyParser.urlencoded({extended: true}));
@@ -114,18 +115,34 @@ router.get('/:id', (req,res)=>{
             if(err){
                 return console.log(err);
             }
+            post.find({owner: data.username},null,{sort: {created: -1}},(err, post)=>{
+                if(err){
+                    console.log(err);
+                    res.redirect('/sigin');
+                }else{
+                    res.render('user',{userdata : data, authen: true, data :post});
+                }
+            });
             // console.log(data);
             // res.redirect('/');
-            res.render('user',{userdata : data, authen: true});
+            // res.render('user',{userdata : data, authen: true});
         });
     }else{
         User.findOne({username : id}, (err,data)=>{
             if(err){
                 return console.log(err);
             }
+            post.find({owner: data.username},null,{sort: {created: -1}},(err, post)=>{
+                if(err){
+                    console.log(err);
+                    res.redirect('/sigin');
+                }else{
+                    res.render('user',{userdata : data, authen: true, data: post});
+                }
+            });
             // console.log(data);
             // res.redirect('/');
-            res.render('user',{userdata : data, authen: false});
+            // res.render('user',{userdata : data, authen: false});
         });
     }
 });

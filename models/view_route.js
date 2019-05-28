@@ -10,27 +10,35 @@ router.use(express.static(path.resolve('./public')));
 router.get('/post_:id', (req, res) => {
     let val = req.params.id;
 
-    if (authentication.checkLogIn(req, res)) {
-        post.findById(val, (err, data) => {
-            if (err) {
-                console.log(err);
-                return res.redirect('/cat');
+    post.find({ petType: 'cat' }, (err, moredata) => {
+        if (err) {
+            console.log(err);
+            res.redirect('/cat');
+        } else {
+            if (authentication.checkLogIn(req, res)) {
+                post.findById(val, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect('/cat');
+                    } else {
+                        res.render('postDetail', { data: data, authen: true, user: req.session.passport.user, moredata: moredata });
+                        // console.log(data);
+                    }
+                });
             } else {
-                res.render('postDetail', { data: data, authen: true, user: req.session.passport.user });
-                // console.log(data);
+                post.findById(val, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                        return res.redirect('/cat');
+                    } else {
+                        res.render('postDetail', { data: data, authen: false, user: null, moredata: moredata });
+                        // console.log(data);
+                    }
+                });
             }
-        });
-    } else {
-        post.findById(val, (err, data) => {
-            if (err) {
-                console.log(err);
-                return res.redirect('/cat');
-            } else {
-                res.render('postDetail', { data: data, authen: false, user: null });
-                // console.log(data);
-            }
-        });
-    }
+        }
+
+    });
 
 
     // res.send(val);

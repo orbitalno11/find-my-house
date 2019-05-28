@@ -9,7 +9,7 @@ let upload = require('./upload_module');
 router.use(express.static(path.resolve('./public')));
 
 router.get('/', (req, res) => {
-    foundation.find((err, data) => {
+    foundation.find({}, null, {sort : {_id: -1}},(err, data) => {
         if (err) {
             console.log(err);
             res.redirect('/');

@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    
+    <% userdata %>
+    <% postdata %>
     <div class="banner">
         <img src="img/cat.png">
         <h1>เรื่องแบบแมว</h1>
@@ -18,78 +19,160 @@
     <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบแมว</a>
     <% include partials/navbar2 %>
 
-    <div class="container">
-        <form class="makePost" method="POST" action="/create/cat" enctype="multipart/form-data">
-            <input type="text" id="petType" name="petType" value="cat" hidden>
-            <input type="text" id="owner" name="owner" value=<%= user %> hidden>
-            <input type="text" id="postStatus" name="postStatus" value="ปกติ" hidden>
-            <div class="row">
-                <div class="col-sm-12 col-lg-3">
-                    <h1>ประเภทโพสต์</h1>
-                </div>
-                <div class="col-sm-12 col-lg-9">
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา">
-                        <label class="form-check-label">ตามหา</label>
-                        <label class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
+    <div class="showPost">
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-8">
+                <form id="createPost" class="makePost" method="POST" action="/create/cat" enctype="multipart/form-data">
+                    <input type="text" id="petType" name="petType" value="cat" hidden>
+                    <input type="text" id="owner" name="owner" value=<%= userdata.username %> hidden>
+                    <input type="text" id="postStatus" name="postStatus" value="ปกติ" hidden>
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            <h1>ประเภทโพสต์</h1>
+                        </div>
+                        <div class="col-12 col-lg-9">
+                            <div class="form-check-inline">
+                                <div class="row no-gutters">
+                                    <div class="col-12 col-lg-auto">
+                                        <input class="form-check-input" type="radio" id="postType" name="postType"
+                                            value="ตามหา">
+                                        <label class="form-check-label">ตามหา</label>
+                                    </div>
+                                    <div class="col-12 col-lg-auto">
+                                        <label
+                                            class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check-inline">
+                                <div class="row no-gutters">
+                                    <div class="col-12 col-lg-auto">
+                                        <input class="form-check-input" type="radio" id="postType" name="postType"
+                                            value="หาบ้าน">
+                                        <label class="form-check-label">หาบ้าน</label>
+                                    </div>
+                                    <div class="col-12 col-lg-auto">
+                                        <label
+                                            class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="หาบ้าน">
-                        <label class="form-check-label">หาบ้าน</label>
-                        <label class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div id="uploadcatpic">
+                                <label class="file-upload" style="text-align: center">
+                                    <input type="file" id="picture" name="picture" required hidden>
+                                    <img id="img-upload" src="img/cat_post.jpg" style="width: 55%">
+                                </label>
+                                <!-- <br>
+                                    <div style="width: 100%;height: 180px; text-align: center;">
+                                        <img id="img-upload" style="width: 240px ;height: 180px;">
+                                    </div> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+                            <label>บรรยายลักษณะเด่น<p class="someDetail">(เช่น สี,ลักษณะขน)</p></label>
+                            <textarea class="form-control" id="identity" name="identity" rows="5"></textarea>
+                        </div>
+                        <div class="col-sm-12 col-lg-4">
+                            <label>บรรยายลักษณะ<p class="someDetail">(โดยละเอียด)</p></label>
+                            <textarea class="form-control" id="moreDetail" name="moreDetail" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-6">
+                            <label>สายพันธุ์</label>
+                            <input class="form-control" type="text" id="species" name="species">
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <label>สถานะ</label>
+                            <select class="form-control" id="petStatus" name="petStatus">
+                                <option value="หาบ้าน">หาบ้าน</option>
+                                <option value="เปลี่ยนเจ้านาย">เปลี่ยนเจ้านาย</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>ข้อมูลติดต่อเพิ่มเติม</label>
+                            <textarea class="form-control" id="moreContact" name="moreContact" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1em;">
+                        <div class="col-sm-12 col-lg-12" style="text-align: center">
+                            <div class="btn-group">
+                                <button class="btn btn-success" type="submit">ยืนยัน</button>
+                                <button class="btn btn-danger" type="reset">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <%= postdata %> -->
+
+            <div class="col-md-4 col-lg-4 signinBox" style="margin-top: 1em;">
+                <div>
+                    <div class="memberBox">
+                        <div class="row">
+                            <div class="col-12" style="text-align: center">
+                                <img class="img-fluid" src="/image/user/<%= userdata._id %>"
+                                    style="height: 150px; box-shadow: 0px 4px 8px 0 black;">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto">
+                                <h4>ยินดีต้อนรับ</h4>
+                            </div>
+                            <div class="col-auto">
+                                <h4><%= userdata.name %></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/user/<%= userdata.username %>" class="btn btn-primary">โปรไฟล์</a>
+                            </div>
+                            <div class="col-auto" style="text-align: center;">
+                                <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 1.5em;">
+                            <div class="col-12">
+                                <h4>โพสต์ล่าสุดของคุณ</h4>
+                            </div>
+                            <div class="row">
+                                <% let c = 0;
+                                for(let i = 0; i < postdata.length; i++){
+                                    if(postdata[i].owner === userdata.username){ %>
+                                <div class="col-12">
+                                    <div class="cattab">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img src="/image/post/<%= postdata[i]._id %>" style="width: 100px;">
+                                            </div>
+                                            <div class="col-4">
+                                                <label>สถานะโพสต์</label>
+                                                <label><%= postdata[i].postStatus %></label>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="/view/post_<%= postdata[i]._id %>"
+                                                    class="btn btn-outline-light">รายละเอียด</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% c++; }
+                                if(c === 3) break;
+                                } %>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-lg-4">
-                    <div id="uploadcatpic">
-                        <label class="file-upload" style="text-align: center">
-                            <input type="file" id="picture" name="picture" required hidden>
-                            <img id="img-upload" src="img/cat_post.jpg" style="width: 55%">
-                        </label>
-                        <!-- <br>
-                        <div style="width: 100%;height: 180px; text-align: center;">
-                            <img id="img-upload" style="width: 240px ;height: 180px;">
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <label>บรรยายลักษณะเด่น<p class="someDetail">(เช่น สี,ลักษณะขน)</p></label>
-                    <textarea class="form-control" id="identity" name="identity" rows="5"></textarea>
-                </div>
-                <div class="col-sm-12 col-lg-4">
-                    <label>บรรยายลักษณะ<p class="someDetail">(โดยละเอียด)</p></label>
-                    <textarea class="form-control" id="moreDetail" name="moreDetail" rows="5"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-lg-6">
-                    <label>สายพันธุ์</label>
-                    <input class="form-control" type="text" id="species" name="species">
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <label>สถานะ</label>
-                    <select class="form-control" id="petStatus" name="petStatus">
-                        <option value="หาบ้าน">หาบ้าน</option>
-                        <option value="เปลี่ยนเจ้านาย">เปลี่ยนเจ้านาย</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>ข้อมูลติดต่อเพิ่มเติม</label>
-                    <textarea class="form-control" id="moreContact" name="moreContact" rows="5"></textarea>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 1em;">
-                <div class="col-sm-12 col-lg-12" style="text-align: center">
-                    <div class="btn-group">
-                        <button class="btn btn-success" type="submit">ยืนยัน</button>
-                        <button class="btn btn-danger" type="reset">ยกเลิก</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
+
     </div>
 </body>
 

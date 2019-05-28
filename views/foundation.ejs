@@ -8,42 +8,58 @@
 
 <body>
     <% data %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>มูลนิธิเพื่อสัตว์</h1>
-        <br>
-    </div>
 
     <% include partials/navbar %>
     <a id="pageActive" class="nav-item active nav-link" href="#">มูลนิธิเพื่อสัตว์</a>
     <% include partials/navbar2 %>
 
-    <div class="searchTab">
-        <form method="POST" action="">
-            <div class="input-group">
-                <input type="text" id="foundationSearch" class="form-control" placeholder="ค้นหา" required>
-                <div class="input-group-append">
-                    <button type="submit" class="btn" style="background-color: #795548"><i class="fas fa-search"
-                            style="color: white;"></i></button>
-                </div>
-            </div>
-
-        </form>
+    <div class="banner">
+        <h1>มูลนิธิเพื่อสัตว์</h1>
+        <br>
     </div>
 
-    <div class="container">
+    <div class="showArea">
         <div class="row">
-            <% for(let i = data.length -1; i >= 0 ; i--){ %>
-            <div class="col-sm-12 col-md-4">
-                <div class="card w-100 foundationcard">
-                    <img src="/image/foundation/<%= data[i]._id %>" class="card-img-top img-fluid">
-                    <div class="card-body">
-                        <p><%= data[i].name %></p>
-                        <a class="btn btn-success" href="/foundation/<%= data[i]._id %>">อ่านรายละเอียด</a>
-                    </div>
+            <div class="col-12 col-md-8 col-lg-8" style="margin: 0 auto 0 auto;">
+                <div class="searchTab">
+                    <form method="POST" action="">
+                        <div class="input-group">
+                            <input type="text" id="foundationSearch" class="form-control" placeholder="ค้นหา" required>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn" style="background-color: #795548"><i
+                                        class="fas fa-search" style="color: white;"></i></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <% } %>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-8" style="margin: 0 auto 0 auto;">
+                <div class="row">
+                    <% for(let i = 0; i < data.length ; i++){ %>
+                    <div class="col-12 col-md-12 col-lg-12" style="margin: 0 auto 0 auto;">
+                        <div class="card w-100 foundationcard">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h1><%= data[i].name %></h1>
+                                        <% let text = data[i].description;
+                                            let txt = text.substr(0,100); %>
+                                        <p><%= txt %>...</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="img-fluid" src="/image/foundation/<%= data[i]._id %>">
+                                    </div>
+                                </div>
+                                <a class="btn btn-success" href="/foundation/<%= data[i]._id %>">อ่านรายละเอียด</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
         </div>
     </div>
 </body>

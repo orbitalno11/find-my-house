@@ -9,7 +9,6 @@
 <body>
     <% postdata %>
     <div class="banner">
-        <img src="img/cat.png">
         <h1>แก้ไขโพสต์</h1>
         <br>
     </div>
@@ -18,9 +17,9 @@
     <a id="pageActive" class="nav-item active nav-link" href="#">แก้ไขโพสต์</a>
     <% include partials/navbar2 %>
 
-    <div class="container">
+    <div class="showPost editpost">
         <% let update = '/edit/post/'+postdata._id; %>
-        <form class="makePost" method="POST" action=<%= update %> enctype="multipart/form-data">
+        <form id="createPost" class="makePost" method="POST" action=<%= update %> enctype="multipart/form-data">
             <input type="text" id="petType" name="petType" value="cat" hidden>
             <input type="text" id="owner" name="owner" value=<%= postdata.owner %> hidden>
             <div class="row">
@@ -29,16 +28,28 @@
                 </div>
                 <div class="col-sm-12 col-lg-9">
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา"
-                            <% if(postdata.postType === 'ตามหา') {%> checked <% } %>>
-                        <label class="form-check-label">ตามหา</label>
-                        <label class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
+                        <div class="row no-gutters">
+                            <div class="col-12 col-lg-auto">
+                                <input class="form-check-input" type="radio" id="postType" name="postType" value="ตามหา"
+                                    <% if(postdata.postType === 'ตามหา') {%> checked <% } %>>
+                                <label class="form-check-label">ตามหา</label>
+                            </div>
+                            <div class="col-12 col-lg-auto">
+                                <label class="someDetail form-check-label">&nbsp;(โพสต์หาแมวตามลักษณะที่ต้องการ)</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" id="postType" name="postType" value="หาบ้าน"
-                            <% if(postdata.postType === 'หาบ้าน') {%> checked <% } %>>
-                        <label class="form-check-label">หาบ้าน</label>
-                        <label class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
+                        <div class="row no-gutters">
+                            <div class="col-12 col-lg-auto">
+                                <input class="form-check-input" type="radio" id="postType" name="postType"
+                                    value="หาบ้าน" <% if(postdata.postType === 'หาบ้าน') {%> checked <% } %>>
+                                <label class="form-check-label">หาบ้าน</label>
+                            </div>
+                            <div class="col-12 col-lg-auto">
+                                <label class="someDetail form-check-label">&nbsp;(หาที่อยู่ใหม่ให้กับแมว)</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,8 +123,10 @@
                         ข้อควรทราบเกี่ยวกับสถานะโพสต์ !!
                     </label>
                     <p class="someDetail">
-                        1. การปรับสถานะโพสต์เป็น 'ปิดโพสต์' หมายถึง สามารถหาบ้าน หรือผู้รับเลี้ยงใหม่ได้แล้ว และโพสต์จะถูกลบออกจากเว็บไซต์ภายใน 7 - 14 วัน หลังจากปรับสถานะ <br>
-                        2. หากโพสต์ของท่านถูกแจ้งผิดกฎ (สถานะขึ้นเป็น 'ผิดกฎ') ท่านต้องทำการติดต่อ Admin เพื่อทำการยื่นยันและปรับสถานะเท่านั้น ผ่าน e-mail : example@example.com
+                        1. การปรับสถานะโพสต์เป็น 'ปิดโพสต์' หมายถึง สามารถหาบ้าน หรือผู้รับเลี้ยงใหม่ได้แล้ว
+                        และโพสต์จะถูกลบออกจากเว็บไซต์ภายใน 7 - 14 วัน หลังจากปรับสถานะ <br>
+                        2. หากโพสต์ของท่านถูกแจ้งผิดกฎ (สถานะขึ้นเป็น 'ผิดกฎ') ท่านต้องทำการติดต่อ Admin
+                        เพื่อทำการยื่นยันและปรับสถานะเท่านั้น ผ่าน e-mail : example@example.com
                     </p>
                 </div>
             </div>
