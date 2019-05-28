@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>เรื่องแบบหมา</title>
+    <title>ค้นหาข้อมูล</title>
     <% include partials/header %>
 </head>
 
@@ -12,28 +12,21 @@
     <% user %>
 
     <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">เรื่องแบบหมา</a>
+    <a id="pageActive" class="nav-item active nav-link" href="#">ค้นหาข้อมูล</a>
     <% include partials/navbar2 %>
 
     <div class="banner">
-        <h1>เรื่องแบบหมา</h1>
+        <h1>ค้นหาข้อมูล</h1>
         <br>
     </div>
 
-    <div class="showArea">
-        <div class="row">
+    <div class="showPost">
+        <div class="row" style="margin-top: 1em;">
             <div class="col-12 col-md-12 col-lg-8">
-                <div class="searchTab">
-                    <form method="POST" action="/search/dog">
-                        <div class="input-group">
-                            <input type="text" id="search" name="search" class="form-control" placeholder="ค้นหา" required>
-                            <div class="input-group-append">
-                                <button type="submit" class="btn" style="background-color: #795548"><i
-                                        class="fas fa-search" style="color: white;"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                    <a href="/create/dog" class="btn btn-success" style="margin-top: 1em;">ตั้งโพสต์</a>
+                <div class="row">
+                    <div class="col-12">
+                        <h1>พบ <%= data.length %> ผลการค้นหา</h1>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -82,7 +75,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <% let url = 'view/post_'+data[i]._id %>
+                                                <% let url = '/view/post_'+data[i]._id %>
                                                 <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                                             </div>
                                         </div>
@@ -191,7 +184,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>
