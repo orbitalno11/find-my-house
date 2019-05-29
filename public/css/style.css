@@ -528,6 +528,7 @@ body {
     display: none;
   }
   #imgSlide {
+    width: 100%;
     display: none;
   }
   .highligth {

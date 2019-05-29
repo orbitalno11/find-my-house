@@ -11,7 +11,7 @@ router.use(express.static(path.resolve('./public')));
 router.get('/report', authentication.isLoggedIn, (req, res) => {
     authentication.isAdmin(req, (val) => {
         if (val) {
-            post.find({ postStatus: 'ถูกแจ้งผิดกฎ' }, (err, data) => {
+            post.find({ postStatus: 'ถูกแจ้งผิดกฎ' },null, {sort: {reportDate: -1}}, (err, data) => {
                 User.findOne({ username: req.session.passport.user }, (err, udata) => {
                     if (err) {
                         console.log(err);
@@ -30,7 +30,7 @@ router.get('/report', authentication.isLoggedIn, (req, res) => {
 router.get('/change', authentication.isLoggedIn, (req, res) => {
     authentication.isAdmin(req, (state) => {
         if (state) {
-            post.find({ postStatus: 'ปิดโพสต์' }, (err, data) => {
+            post.find({ postStatus: 'ปิดโพสต์' },null,{sort: {created: -1}}, (err, data) => {
                 User.findOne({ username: req.session.passport.user }, (err, udata) => {
                     if (err) {
                         console.log(err);
