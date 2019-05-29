@@ -14,7 +14,7 @@ router.post('/cat', (req, res) => {
     let value = req.body.search;
     // console.log(value);
 
-    post.find({ petType: 'cat', owner: new RegExp(value, "i") }, null, { sort: { created: -1 } }, (err, data) => {
+    post.find({ petType: 'cat', species: new RegExp(value, "i") }, null, { sort: { created: -1 } }, (err, data) => {
         if (err) {
             console.log(err);
             return res.redirect('/');
@@ -40,7 +40,7 @@ router.post('/dog', (req, res) => {
     let value = req.body.search;
     // console.log(value);
 
-    post.find({ petType: 'dog', owner: new RegExp(value, "i") }, null, { sort: { created: -1 } }, (err, data) => {
+    post.find({ petType: 'dog', species: new RegExp(value, "i") }, null, { sort: { created: -1 } }, (err, data) => {
         if (err) {
             console.log(err);
             return res.redirect('/');
