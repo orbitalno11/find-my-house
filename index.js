@@ -191,7 +191,7 @@ app.post('/signup', uploadpic.upload.single('picture'), (req, res) => {
     User.register(new User(userData), req.body.password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render('signup');
+            res.redirect('/signin');
         }
         passport.authenticate('local')(req, res, () => {
             res.redirect('/');
