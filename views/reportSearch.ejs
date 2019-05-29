@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>โพสต์ขอปรับสถานะ</title>
+    <title>โพสต์ถูกแจ้งผิดกฏ</title>
     <% include partials/header %>
 </head>
 
@@ -10,12 +10,13 @@
     <% postdata %>
     <% userdata %>
     <div class="banner">
+        <img src="img/cat.png">
         <h1>ระบบบริหารและจัดการข้อมูล</h1>
         <br>
     </div>
 
     <% include partials/navbar %>
-    <a id="pageActive" class="nav-item active nav-link" href="#">โพสต์ขอปรับสถานะ</a>
+    <a id="pageActive" class="nav-item active nav-link" href="#">โพสต์แจ้งผิดกฏ</a>
     <% include partials/navbar2 %>
 
     <% include partials/adminnav %>
@@ -61,19 +62,14 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-12 col-lg-8">
                 <div class="row">
                     <div class="col-12">
-                        <div class="searchTab">
-                            <form method="POST" action="/search/changeState">
-                                <div class="input-group">
-                                    <input type="text" id="catSearch" name="search" class="form-control" placeholder="ค้นหา" required>
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn" style="background-color: #795548"><i
-                                                class="fas fa-search" style="color: white;"></i></button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="row">
+                            <div class="col-12">
+                                <h1>พบ <%= postdata.length %> ผลการค้นหา</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,7 +82,8 @@
                                 <h4 id="title" class="card-title">[<%= postdata[i].postType %>]</h4>
                                 <div class="row">
                                     <div class="col-5" style="text-align: center;">
-                                        <img id="petPic" class="img-fluid" src="<%= '/image/post/'+postdata[i]._id %>">
+                                        <% picurl = '/image/post/'+postdata[i]._id; %>
+                                        <img id="petPic" class="img-fluid" src=<%= picurl %>>
                                     </div>
                                     <div class="col-7" style="padding-left: 1em;">
                                         <div class="row">
@@ -123,11 +120,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 1em;">
+                                <div class="row">
                                     <div class="col-12 btn-group">
-                                        <a href=<%= '/delete/post/admin/'+postdata[i]._id %>
+                                        <a href=<%= '/delete/post/'+postdata[i]._id %>
                                             class="btn btn-outline-danger btn-dark">ลบ</a>
-                                        <a href=<%= '/view/post_'+postdata[i]._id %>
+                                        <a href=<%= '/view/report_'+postdata[i]._id %>
                                             class="btn btn-outline-primary btn-dark">ดูรายละเอียด</a>
                                     </div>
                                 </div>
@@ -137,10 +134,8 @@
                     <% } %>
                 </div>
             </div>
-
         </div>
-    </div>
-    <%include partials/footer %>
+    </div><%include partials/footer %>
 </body>
 
 </html>

@@ -15,10 +15,17 @@
     <a id="pageActive" class="nav-item active nav-link" href="#">โปรไฟล์</a>
     <% include partials/navbar2 %>
 
-    <div class="banner">
-        <h1>ยินดีต้อนรับ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
-        <br>
-    </div>
+    <% if(authen){ %>
+        <div class="banner">
+            <h1>ยินดีต้อนรับ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
+            <br>
+        </div>
+    <% }else{ %>
+        <div class="banner">
+            <h1>โปรไฟล์ของ <%= userdata.name %>&nbsp;<%= userdata.lname %> </h1>
+            <br>
+        </div>
+    <% } %>
 
     <% if(userdata.status === 'admin' && authen) { %>
     <% include partials/adminnav %>
@@ -27,7 +34,7 @@
     </div>
     <% } %>
 
-    <div class="showArea" style="margin-top: 1em;">
+    <div class="showPost" <% if(userdata.status === 'admin' && authen) {%> style="margin-top:1em;" <% } %>>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-6">
                 <div class="memberBox">
@@ -71,9 +78,11 @@
                         <div class="col-12 btn-group">
                             <a href="/user/detail_<%= userdata.username %>"
                                 class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a>
+                                <% if(authen){ %>
                             <a href="<%= '/view/user_post_'+userdata.username %>"
                                 class="btn btn-warning">ดูประวัติโพสต์</a>
                             <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -132,7 +141,7 @@
             </div>
         </div>
     </div>
-
+    <%include partials/footer %>
 </body>
 
 </html>

@@ -27,6 +27,7 @@ let foundation = require('./models/foundation_route');
 let howtoroute = require('./models/howto_route');
 let howto = require('./models/howto_schema');
 let foundationSchema = require('./models/foundation_schema');
+let searchRoute = require('./models/search_route');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -54,6 +55,7 @@ app.use('/delete', remove);
 app.use('/admin', admin);
 app.use('/foundation', foundation);
 app.use('/howto', howtoroute);
+app.use('/search', searchRoute);
 
 app.get('/', (req, res) => {
     post.find({}, null, { sort: { created: -1 }, limit: 6 }, (err, data) => {
@@ -133,7 +135,7 @@ app.get('/dog', (req, res) => {
     });
 });
 
-app.get('/aboutus', authenticattion.isLoggedIn, (req, res) => {
+app.get('/aboutus', (req, res) => {
     res.render('aboutUs');
 });
 

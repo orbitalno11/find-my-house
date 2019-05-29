@@ -254,68 +254,79 @@
             </div>
 
             <div class="col-md-4 col-lg-4 signinBox">
-                <div>
-                    <% if(authen) { %>
-                    <div class="memberBox">
-                        <div class="row">
-                            <div class="col-12" style="text-align: center">
-                                <img class="img-fluid" src="/image/user/<%= user._id %>"
-                                    style="height: 150px; box-shadow: 0px 4px 8px 0 black;">
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 1.5em;">
-                            <div class="col-auto">
-                                <h4>ยินดีต้อนรับ</h4>
-                            </div>
-                            <div class="col-auto">
-                                <h4><%= user.name %></h4>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 1.5em;">
-                            <div class="col-auto" style="text-align: center;">
-                                <a href="/user/<%= user.username %>" class="btn btn-primary">โปรไฟล์</a>
-                            </div>
-
-                            <% if(authen) {%>
-                            <div class="col-auto" style="text-align: center;">
-                                <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
-                            </div>
-                            <% } %>
-                        </div>
-                    </div>
-                    <% }else{ %>
-                    <div class="memberBox">
-                        <h1>เข้าสู่ระบบ</h1>
-                        <form method="POST" action="/signin">
+                <div class="row">
+                    <div class="col-12">
+                        <% if(authen) { %>
+                        <div class="memberBox">
                             <div class="row">
-                                <div class="col-sm-12 col-md-3 col-lg-3">
-                                    <label>e-mail :</label>
-                                </div>
-                                <div class="col-sm-12 col-md-9 col-lg-9">
-                                    <input type="email" class="form-control" id="username" name="username"
-                                        placeholder="กรุณาใส่ email ที่ลงทะเบียน" required>
+                                <div class="col-12" style="text-align: center">
+                                    <img class="img-fluid" src="/image/user/<%= user._id %>"
+                                        style="height: 150px; box-shadow: 0px 4px 8px 0 black;">
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 0.5em;">
-                                <div class="col-sm-12 col-md-3 col-lg-3">
-                                    <label>รหัสผ่าน :</label>
+                            <div class="row" style="margin-top: 1.5em;">
+                                <div class="col-auto">
+                                    <h4>ยินดีต้อนรับ</h4>
                                 </div>
-                                <div class="col-sm-12 col-md-9 col-lg-9">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                        placeholder="กรุณาใส่รหัสผ่าน" required>
-                                </div>
-                            </div>
-                            <div class="row" style="margin-top: 0.5em;">
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
-                                    <a href="/signup" class="btn btn-primary">สมัครสมาชิก</a>
+                                <div class="col-auto">
+                                    <h4><%= user.name %></h4>
                                 </div>
                             </div>
+                            <div class="row" style="margin-top: 1.5em;">
+                                <div class="col-auto" style="text-align: center;">
+                                    <a href="/user/<%= user.username %>" class="btn btn-primary">โปรไฟล์</a>
+                                </div>
 
-                        </form>
+                                <% if(authen) {%>
+                                <div class="col-auto" style="text-align: center;">
+                                    <a href="/signout" class="btn btn-danger">ออกจากระบบ</a>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <% }else{ %>
+                        <div class="memberBox">
+                            <h1>เข้าสู่ระบบ</h1>
+                            <form method="POST" action="/signin">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <label>e-mail :</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-9 col-lg-9">
+                                        <input type="email" class="form-control" id="username" name="username"
+                                            placeholder="กรุณาใส่ email ที่ลงทะเบียน" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <label>รหัสผ่าน :</label>
+                                    </div>
+                                    <div class="col-sm-12 col-md-9 col-lg-9">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="กรุณาใส่รหัสผ่าน" required>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 0.5em;">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success">เข้าสู่ระบบ</button>
+                                        <a href="/signup" class="btn btn-primary">สมัครสมาชิก</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <% } %>
                     </div>
-                    <% } %>
                 </div>
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12">
+                        <a href="#">
+                            <img id="vut" class="img-fluid" src="/img/bn_service.png">
+                        </a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -479,6 +490,8 @@
             </div>
         </div>
     </div>
+
+    <%include partials/footer %>
 </body>
 
 </html>
