@@ -224,9 +224,9 @@ body {
 .takeCare {
   background-color: #F8BBD0;
   margin-top: 1em;
-  font-size: 1.5em;
+  font-size: 1em;
   border-radius: 0.5em;
-  height: 325px;
+  /* height: 325px; */
   /* padding-top: auto;
   padding-bottom: auto; */
 }
@@ -251,7 +251,7 @@ body {
   margin-top: 1em;
   font-size: 1.5em;
   border-radius: 0.5em;
-  height: 325px;
+  /* height: 325px; */
 }
 
 .ownerPost img {

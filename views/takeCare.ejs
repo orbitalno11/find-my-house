@@ -32,47 +32,56 @@
                     <div class="card-body">
                         <h4 class="card-title">[<%= postdata.postType %>]</h4>
                         <div class="row">
-                            <div class="col-5" style="text-align: center;">
+                            <div class="col-12 col-md-12 col-lg-5" style="text-align: center;">
                                 <% let urlpic = '/image/post/'+ postdata._id; %>
                                 <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                             </div>
-                            <div class="col-7" style="padding-left: 1em;">
+                            <div class="col-12 col-md-12 col-lg-5" style="padding-left: 1em;">
                                 <div class="row">
-                                    <div class="col-5">
-                                        <label>ลักษณะ</label>
+                                    <div class="col-auto">
+                                        <label><strong>ลักษณะ :</strong> </label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-auto">
                                         <label id="identity"><%= postdata.identity %></label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
-                                        <label>สายพันธุ์</label>
+                                    <div class="col-auto">
+                                        <label><strong>สายพันธุ์ :</strong></label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-auto">
                                         <label id="species"><%= postdata.species %></label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-5">
-                                        <label>สถานะ</label>
+                                    <div class="col-auto">
+                                        <label><strong>สถานะ :</strong></label>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-auto">
                                         <label id="petStatus"><%= postdata.petStatus %></label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <% 
-                                            let url;
-                                            if (postdata.petType === 'cat') {
-                                                url = '/view/post_'+postdata._id
-                                            }else{
-                                                url = '/view/post_'+postdata._id;
-                                            } %>
-                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
-                                    </div>
-                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label><strong>ข้อมูลติดต่อเพิ่มเติมหรือข้อมูลอื่น ๆ</strong></label>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" readonly rows="3"><%= postdata.moreContact %></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="text-align: center;margin-top: 1em;">
+                                <% 
+                                    let url;
+                                    if (postdata.petType === 'cat') {
+                                        url = '/view/post_'+postdata._id
+                                    }else{
+                                        url = '/view/post_'+postdata._id;
+                                    } %>
+                                <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                             </div>
                         </div>
                     </div>
@@ -159,6 +168,12 @@
                                 <label id="facebook"><%= userdata.province %></label>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/user/<%= userdata.username %>" class="btn btn-primary">ดูข้อมูลเพิ่มเติม</a>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
