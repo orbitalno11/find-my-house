@@ -15,11 +15,11 @@
     <a id="pageActive" class="nav-item active nav-link" href="#">ดูข้อมูลขอรับเลี้ยง</a>
     <% include partials/navbar2 %>
 
-    <div class="banner">
+    <div class="banner" <% if (postdata.petType === 'cat') {%> style="background-image: url(/img/catBanner.jpg);" <% } else { %> style="background-image: url(/img/dogBanner.jpg);" <% } %>>
         <% if (postdata.petType === 'cat') {%>
-        <h1>เรื่องแบบแมว</h1>
+        <h1 class="bannerText">เรื่องแบบแมว</h1>
         <% }else{%>
-        <h1>เรื่องแบบหมา</h1>
+        <h1 class="bannerText">เรื่องแบบหมา</h1>
         <% } %>
         <br>
     </div>

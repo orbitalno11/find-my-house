@@ -9,9 +9,8 @@
 <body>
     <% data %>
     <% userdata %>
-    <div class="banner">
-        <img src="img/cat.png">
-        <h1>ระบบบริหารและจัดการข้อมูล</h1>
+    <div class="banner" style="background-image: url(/img/userBanner.jpg);">
+        <h1 class="bannerText">ระบบบริหารและจัดการข้อมูล</h1>
         <br>
     </div>
 
@@ -83,7 +82,7 @@
                 </div>
 
                 <div class="row">
-                    <% for(let i = data.length -1; i >= 0 ; i--){ %>
+                    <% for(let i = 0; i < data.length ; i++){ %>
                     <div class="col-sm-12 col-md-4">
                         <div class="card w-100 foundationcard">
                             <img src="/image/foundation/<%= data[i]._id %>" class="card-img-top img-fluid">
