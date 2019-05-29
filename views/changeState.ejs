@@ -85,42 +85,44 @@
                             <div class="card-body">
                                 <h4 id="title" class="card-title">[<%= postdata[i].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-5" style="text-align: center;">
-                                        <img id="petPic" class="img-fluid" src="<%= '/image/post/'+postdata[i]._id %>">
+                                    <div class="col-12 col-md-12 col-lg-5" style="text-align: center;">
+                                        <% let urlpic = '/image/post/'+ postdata[i]._id; %>
+                                        <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                                     </div>
-                                    <div class="col-7" style="padding-left: 1em;">
+                                    <div class="col-12 col-md-12 col-lg-7" style="padding-left: 1em;">
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>ลักษณะ</label>
+                                            <div class="col-auto">
+                                                <label><strong>ลักษณะ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="identity"><%= postdata[i].identity %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สายพันธุ์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สายพันธุ์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="species"><%= postdata[i].species %></label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-5">
-                                                <label>สถานะน้อง</label>
+                                                <label><strong>สถานะน้อง :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= postdata[i].petStatus %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สถานะโพสต์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สถานะโพสต์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= postdata[i].postStatus %></label>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 1em;">

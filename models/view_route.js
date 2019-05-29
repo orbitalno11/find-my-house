@@ -80,7 +80,7 @@ router.get('/user_post_:username', authentication.isLoggedIn, (req, res) => {
     let val = req.params.username;
 
     if (req.session.passport.user === val) {
-        post.find({ owner: val }, (err, data) => {
+        post.find({ owner: val },null,{sort: {created: -1}}, (err, data) => {
             if (err) {
                 console.log(err);
                 return res.redirect('/user/' + val);
