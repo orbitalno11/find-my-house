@@ -23,7 +23,8 @@
     <a id="pageActive" class="nav-item active nav-link" href="#">รายละเอียดโพสต์</a>
     <% include partials/navbar2 %>
 
-    <div class="banner" <% if (data.petType === 'cat') {%> style="background-image: url(/img/catBanner.jpg);" <% } else { %> style="background-image: url(/img/dogBanner.jpg);" <% } %>>
+    <div class="banner" <% if (data.petType === 'cat') {%> style="background-image: url(/img/catBanner.jpg);"
+        <% } else { %> style="background-image: url(/img/dogBanner.jpg);" <% } %>>
         <% if (data.petType === 'cat') {%>
         <h1 class="bannerText">เรื่องแบบแมว</h1>
         <% }else{%>
@@ -111,18 +112,20 @@
                                 <label class="postDetailList"><%= data.created.toDateString() %></label>
                             </div>
                         </div>
-                        <div class="row" style="margin-top: 1em;">
-                            <div class="col-12" style="text-align: center;">
-                                <% 
-                                    let url;
-                                    if (data.petType === 'cat') {
-                                        url = '/takecare/cat_'+data._id;
-                                    }else{
-                                        url = '/takecare/dog_'+data._id;
-                                    } %>
-                                <a href=<%= url %> class="btn takeCareBTN">สนใจรับเลี้ยง</a>
-                            </div>
-                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 1em;">
+                    <div class="col-12" style="text-align: center;">
+                        <% 
+                            let url;
+                            if (data.petType === 'cat') {
+                                url = '/takecare/cat_'+data._id;
+                            }else{
+                                url = '/takecare/dog_'+data._id;
+                            } %>
+                        <a href=<%= url %> class="btn takeCareBTN">สนใจรับเลี้ยง</a>
                     </div>
                 </div>
             </div>
@@ -138,49 +141,50 @@
                             <div class="card-body">
                                 <h4 id="title" class="card-title">[<%= moredata[randompost].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-5" style="text-align: center;">
-                                        <img id="petPic" class="img-fluid"
-                                            src=<%= '/image/post/'+ moredata[randompost]._id %>>
+                                    <div class="col-12 col-md-12 col-lg-5" style="text-align: center;">
+                                        <% urlpic = '/image/post/'+ moredata[randompost]._id; %>
+                                        <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                                     </div>
-                                    <div class="col-7" style="padding-left: 1em;">
+                                    <div class="col-12 col-md-12 col-lg-7" style="padding-left: 1em;">
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>ลักษณะ</label>
+                                            <div class="col-auto">
+                                                <label><strong>ลักษณะ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="identity"><%= moredata[randompost].identity %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สายพันธุ์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สายพันธุ์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="species"><%= moredata[randompost].species %></label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-5">
-                                                <label>สถานะน้อง</label>
+                                                <label><strong>สถานะน้อง :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= moredata[randompost].petStatus %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สถานะโพสต์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สถานะโพสต์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= moredata[randompost].postStatus %></label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <a href=<%= '/view/post_'+moredata[randompost]._id %>
-                                                    class="btn takeCareBTN">อ่านรายละเอียด</a>
-                                            </div>
-                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="text-align: center;">
+                                        <% url = '/view/post_'+ moredata[randompost]._id %>
+                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                                     </div>
                                 </div>
                             </div>
@@ -194,14 +198,14 @@
                             <div class="card-body">
                                 <h4 id="title" class="card-title">[<%= moredata[randompost2].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-4" style="text-align: center;">
-                                        <img id="petPic" class="img-fluid"
-                                            src=<%= '/image/post/'+ moredata[randompost2]._id %>>
+                                    <div class="col-12 col-md-12 col-lg-5" style="text-align: center;">
+                                        <% urlpic = '/image/post/'+ moredata[randompost2]._id; %>
+                                        <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                                     </div>
-                                    <div class="col-8" style="padding-left: 1em;">
+                                    <div class="col-12 col-md-12 col-lg-7" style="padding-left: 1em;">
                                         <div class="row">
                                             <div class="col-auto">
-                                                <label>ลักษณะ</label>
+                                                <label><strong>ลักษณะ :</strong></label>
                                             </div>
                                             <div class="col-auto">
                                                 <label id="identity"><%= moredata[randompost2].identity %></label>
@@ -209,15 +213,15 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-auto">
-                                                <label>สายพันธุ์</label>
+                                                <label><strong>สายพันธุ์ :</strong></label>
                                             </div>
                                             <div class="col-auto">
                                                 <label id="species"><%= moredata[randompost2].species %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-auto">
-                                                <label>สถานะน้อง</label>
+                                            <div class="col-5">
+                                                <label><strong>สถานะน้อง :</strong></label>
                                             </div>
                                             <div class="col-auto">
                                                 <label id="petStatus"><%= moredata[randompost2].petStatus %></label>
@@ -225,18 +229,19 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-auto">
-                                                <label>สถานะโพสต์</label>
+                                                <label><strong>สถานะโพสต์ :</strong></label>
                                             </div>
                                             <div class="col-auto">
                                                 <label id="petStatus"><%= moredata[randompost2].postStatus %></label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <a href=<%= '/view/post_'+moredata[randompost2]._id %>
-                                                    class="btn takeCareBTN">อ่านรายละเอียด</a>
-                                            </div>
-                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="text-align: center;">
+                                        <% url = '/view/post_'+ moredata[randompost2]._id %>
+                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                                     </div>
                                 </div>
                             </div>

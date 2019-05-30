@@ -90,7 +90,7 @@
 
             <div class="col-12 col-md-12 col-lg-6">
                 <div class="col-12">
-                    <h4>โพสต์ล่าสุดของคุณ</h4>
+                    <h4>โพสต์ล่าสุดของคุณ <%= userdata.name %></h4>
                 </div>
                 <div class="row">
                     <% let c = 0;
@@ -104,24 +104,24 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="row">
-                                        <div class="col-12 col-md-auto col-lg-auto">
-                                            <label>สถานะน้อง</label>
+                                        <div class="col-auto">
+                                            <label><strong>สถานะน้อง :</strong></label>
                                         </div>
-                                        <div class="col-12 col-md-auto col-lg-auto">
+                                        <div class="col-auto">
                                             <label><%= data[i].petStatus %></label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-md-auto col-lg-auto">
-                                            <label>สถานะโพสต์</label>
+                                        <div class="col-auto">
+                                            <label><strong>สถานะโพสต์ :</strong></label>
                                         </div>
-                                        <div class="col-12 col-md-auto col-lg-auto">
+                                        <div class="col-auto">
                                             <label><%= data[i].postStatus %></label>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 col-md-auto col-lg-auto">
-                                            <label>โพสต์เมื่อ</label>
+                                        <div class="col-auto">
+                                            <label><strong>โพสต์เมื่อ :</strong></label>
                                         </div>
                                         <div class="col-12 col-md-auto col-lg-auto">
                                             <label><%= data[i].created.toDateString() %></label>

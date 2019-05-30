@@ -36,49 +36,50 @@
                             <div class="card-body">
                                 <h4 id="title" class="card-title">[<%= data[i].postType %>]</h4>
                                 <div class="row">
-                                    <div class="col-5" style="text-align: center;">
+                                    <div class="col-12 col-md-12 col-lg-5" style="text-align: center;">
                                         <% let urlpic = '/image/post/'+ data[i]._id; %>
                                         <img id="petPic" class="img-fluid" src=<%= urlpic %>>
                                     </div>
-                                    <div class="col-7" style="padding-left: 1em;">
+                                    <div class="col-12 col-md-12 col-lg-7" style="padding-left: 1em;">
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>ลักษณะ</label>
+                                            <div class="col-auto">
+                                                <label><strong>ลักษณะ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="identity"><%= data[i].identity %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สายพันธุ์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สายพันธุ์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="species"><%= data[i].species %></label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-5">
-                                                <label>สถานะน้อง</label>
+                                                <label><strong>สถานะน้อง :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= data[i].petStatus %></label>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-5">
-                                                <label>สถานะโพสต์</label>
+                                            <div class="col-auto">
+                                                <label><strong>สถานะโพสต์ :</strong></label>
                                             </div>
-                                            <div class="col-7">
+                                            <div class="col-auto">
                                                 <label id="petStatus"><%= data[i].postStatus %></label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <% let url = '/view/post_'+data[i]._id %>
-                                                <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
-                                            </div>
-                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12" style="text-align: center;">
+                                        <% let url = '/view/post_'+data[i]._id %>
+                                        <a href=<%= url %> class="btn takeCareBTN">อ่านรายละเอียด</a>
                                     </div>
                                 </div>
                             </div>

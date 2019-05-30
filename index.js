@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
             console.log(err);
             return res.redirect('/');
         } else {
-            foundationSchema.find({}, null, { sort: { _id: -1 }, limit: 10 }, (err, data2) => {
+            foundationSchema.find({}, null, { sort: { _id: -1 }, limit: 8 }, (err, data2) => {
                 if (err) {
                     console.log(err);
                     res.redirect('/');
