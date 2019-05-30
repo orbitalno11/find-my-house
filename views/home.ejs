@@ -56,6 +56,7 @@
                     style="background-color: #795548; border-radius: 0.5em 0.5em 0em 0em; text-align: center; padding: 0.5em;">
                     <h4 style="color: white">โพสต์ล่าสุด</h4>
                 </div>
+                <% if(postdata.length != 0) {%>
                 <div id="recentlyDesktop" class="recenttlyPost">
                     <div id="postSlide" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -251,6 +252,16 @@
                         </div>
                     </div>
                 </div>
+
+                <% }else{  %>
+                <div class="foundationcard" style="padding: 1em; border-radius: 0.5em; height: 5em;">
+                    <div class="row">
+                        <div class="col-12" style="text-align: center;">
+                            <h1 style="margin-top: auto; margin-bottom: auto;">ขณะนี้ยังไม่มีโพสต์ล่าสุด</h1>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
             </div>
 
             <div class="col-md-4 col-lg-4 signinBox">
@@ -343,6 +354,8 @@
             <div style="background-color: #795548; color: white; height: auto;">
                 <h1>มูลนิธิเพื่อสัตว์</h1>
             </div>
+
+            <% if(howtodata.length != 0) { %>
 
             <div id="recentlyDesktop" class="recenttlyPost">
                 <div id="foundationSlide" class="carousel slide" data-ride="carousel">
@@ -488,6 +501,16 @@
                     </div>
                 </div>
             </div>
+
+            <% }else{  %>
+            <div class="foundationcard" style="padding: 1em; border-radius: 0.5em; height: 5em;">
+                <div class="row">
+                    <div class="col-12" style="text-align: center; margin-top: auto; margin-bottom: auto;">
+                        <h1>ขณะนี้ยังไม่มีข้อมูลของมูลนิธิ</h1>
+                    </div>
+                </div>
+            </div>
+            <% } %>
         </div>
     </div>
 
