@@ -6,7 +6,7 @@ const passport = require('passport');
 // const passportLocalMongoose = require('passport-local-mongoose');
 const path = require('path');
 const portNumber = process.env.PORT || 9000;
-const connectString = 'mongodb+srv://stn:' + encodeURIComponent('stn1998') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
+const connectString = 'mongodb+srv://<user>:' + encodeURIComponent('<password>') + '@cluster0-mb8sl.mongodb.net/findmyhouse?retryWrites=true';
 mongoose.connect(connectString);
 // const mongoURI = 'mongodb://localhost/FindMyHouse2';
 // mongoose.connect(mongoURI);
